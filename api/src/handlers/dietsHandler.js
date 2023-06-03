@@ -11,10 +11,6 @@ const getDietsHandler = async (req, res) => {
     }
 }
 
-
-    // const { data }
-
-
 module.exports = {
     getDietsHandler,
 }

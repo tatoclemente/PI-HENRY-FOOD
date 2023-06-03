@@ -28,11 +28,12 @@ const getDiets = async () => {
       },
     });
 
-    const dietasArr = data.results.map((recipe) => recipe.diets).flat();
+    const dietsArr = data.results.map((recipe) => recipe.diets).flat();
 
-    const uniqueDiets = [...new Set(dietasArr)];
+    const uniqueDiets = [...new Set(dietsArr)];
 
     saveDiets(uniqueDiets);
+
     return uniqueDiets;
   }
   return dietsDB;

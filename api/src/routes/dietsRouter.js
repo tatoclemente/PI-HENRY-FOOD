@@ -5,4 +5,6 @@ const dietsRouter = Router();
 
 dietsRouter.get('/diets', getDietsHandler)
 
-module.exports = dietsRouter;
+module.exports = { 
+    dietsRouter,
+};
