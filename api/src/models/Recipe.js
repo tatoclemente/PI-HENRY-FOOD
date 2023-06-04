@@ -14,6 +14,7 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       image: {
         type: DataTypes.STRING,
@@ -34,6 +35,10 @@ module.exports = (sequelize) => {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false, 
       },
+      created: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      }
     },
     { timestamps: false }
   );

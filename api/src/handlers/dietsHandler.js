@@ -7,7 +7,7 @@ const getDietsHandler = async (req, res) => {
         res.status(200).json(diets)
     
     } catch (error) {
-        res.status(404).send(error.message)
+        res.status(500).json({ error:error.message })
     }
 }
 

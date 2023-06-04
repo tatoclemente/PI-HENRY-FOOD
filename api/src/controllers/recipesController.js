@@ -6,6 +6,9 @@ const API_KEY = process.env.API_KEY;
 const {Op} = require('sequelize');
 
 const getRecipeById = async (id, source) => {
+  if(id <= 0) throw Error('No existen recetas con ids menores a 1')
+  if(id > 5221) throw Error('No existen recetas con ids superiores a 5221')
+
   //* PRIMERO_____valido que el id sea de mi base de datos
   if (source === "bdd") {
     //? traigo la receta de la base de datos
@@ -31,6 +34,7 @@ const getRecipeById = async (id, source) => {
       steps: recipeDB.steps,
       diets: diets,
     };
+    
     return recipe;
   } else {
     //? SEGUNDO____ en el caso que el id sea un numero entero, traigo la receta de la api
@@ -46,7 +50,7 @@ const getRecipeById = async (id, source) => {
       image: data.image,
       sumary: data.summary,
       healtScore: data.healthScore,
-      steps: data.analyzedInstructions[0].steps.map((step) => {
+      steps: data.analyzedInstructions[0]?.steps.map((step) => {
         return {
           number: step.number,
           step: step.step,
@@ -61,6 +65,7 @@ const getRecipeById = async (id, source) => {
 };
 
 const getRecipesByName = async (name) => {
+  if(name.length === 0) throw Error('La query está vacia')
   
   const apiKey = API_KEY;
   const pageSize = 5221;
@@ -102,9 +107,10 @@ const getRecipesByName = async (name) => {
       return recipe.name.toLowerCase().includes(name.toLowerCase())
     
     })
-    return [...recipesDB, ...filteredRecipesApi ];
+    const allDiets = [...recipesDB, ...filteredRecipesApi ];
+    if(allDiets.length === 0) return {message: 'Lo siento, no existen recetas con ese nombre'}
+    return allDiets;
   }
-  throw Error('No existen recetas con ese nombre');
 
   
 };
@@ -117,7 +123,8 @@ const createRecipe = async (
   steps,
   diets
 ) => {
-  // creo la receta usando las propidades que requiere mi modelo
+  if(!name || !image || !summary || !healthScore || !steps || !diets) throw Error('Faltan datos para crear la receta')
+
   const recipe = await Recipe.create({
     name,
     image,

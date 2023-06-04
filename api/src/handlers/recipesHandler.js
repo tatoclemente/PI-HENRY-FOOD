@@ -6,6 +6,7 @@ const recipesByIdHandler = async (req, res) => {
   // Debe incluir los datos de tipo de dieta
   // Debe funcionar tanto para los datos de la API como para los de la DB
   const { id } = req.params;
+  
 
   // La constante source es una variable que determina si la receta se encuentra en la base de datos o si se encuentra en la API, por lo que se usa para saber que endpoint usar.
   // isNaN(id) devuelve true si el valor es NaN, false si no lo es, ya que el ID de la base de datos es un string con numeros y letras, y el ID de la API es un numero entero.
