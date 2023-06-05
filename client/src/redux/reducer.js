@@ -1,12 +1,14 @@
-import { recipes } from "../utils/data";
+import { GET_RECIPES } from "./actions";
 
 const initialState = {
-    recipes: recipes,
-    //recipes: [],
+    // recipes: recipes,
+    recipes: [],
 }
 
-const rootReducer = (state=initialState, action) => {
-    switch(action.type) {
+const rootReducer = (state=initialState, {type, payload}) => {
+    switch(type) {
+        case GET_RECIPES:
+            return { ...state, recipes: payload };
         default:
             return { ...state };
     

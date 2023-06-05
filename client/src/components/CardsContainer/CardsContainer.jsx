@@ -4,6 +4,7 @@ import style from "./CardsContainer.module.css";
 import { useSelector } from "react-redux";
 
 
+
 function CardsContainer() {
 
   const recipes = useSelector((state) => state.recipes);
@@ -14,7 +15,7 @@ function CardsContainer() {
         <Card
           key={index}
           id={recipe.id}
-          name={recipe.name}
+          name={recipe.title}
           image={recipe.image}
           sumary={recipe.sumary}
           healtScore={recipe.healtScore}
