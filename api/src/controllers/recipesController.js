@@ -71,12 +71,35 @@ const getRecipesByName = async (name) => {
   const pageSize = 5221;
 
   // traigo las recetas de mi Base de Datos
-  const recipesDB = await Recipe.findAll({
+  const recipesModel = await Recipe.findAll({
     where: {
       name: {
         [Op.iLike]: `%${name.toLowerCase()}%`,
       }
-    }
+    },
+    include: {
+      model: Diet,
+      attributes: ["name"],
+      through: {
+        attributes: [],
+      },
+    },
+  })
+
+  const diets = recipesModel.map(recipe => recipe.Diets.map(diet => diet.name)).flat()
+
+  const recipesDB = recipesModel.map((recipe) => {
+    return {
+      id: recipe.id,
+      name: recipe.name,
+      image: recipe.image,
+      sumary: recipe.summary,
+      healtScore: recipe.healtScore,
+      steps: recipe.steps,
+      diets: diets,
+      created: recipe.created,
+    };
+  
   })
 
   // traigo las recetas de mi API
