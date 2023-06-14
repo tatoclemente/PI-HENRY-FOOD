@@ -15,3 +15,5 @@ module.exports = {
     baseUrlID,
     flag,
 }
+//   URL                                                  FLAG                       API_KEY
+//'https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=tuApi_Key'

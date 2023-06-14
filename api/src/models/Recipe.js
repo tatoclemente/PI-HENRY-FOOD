@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
       },
       //paso a paso
       steps: {
-        type: DataTypes.ARRAY(DataTypes.JSON),
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false, 
       },
       created: {

@@ -30,13 +30,16 @@ const getDiets = async () => {
 
     const dietsArr = data.results.map((recipe) => recipe.diets).flat();
 
+    // Como desde la API obtengo un array con todas los tipos de dietas de todas las recetas
+    // necesito eliminar todos los que se repitan y obtener un array con los tipos de dietas ÚNICOS
+    // Para eso uso el contructor Set() que solo almacena los valores unicos, y creo un nuevo array
     const uniqueDiets = [...new Set(dietsArr)];
 
-    saveDiets(uniqueDiets);
+    await saveDiets(uniqueDiets);
 
-    return uniqueDiets;
+    return uniqueDiets
   }
-  return dietsDB;
+  return dietsDB.map((diet) => diet.name);
 };
 
 module.exports = {

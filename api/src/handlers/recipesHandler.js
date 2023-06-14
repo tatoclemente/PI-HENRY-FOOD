@@ -1,5 +1,11 @@
 const { getRecipeById, createRecipe, getRecipesByName } = require("../controllers/recipesController");
 
+const uploadImage = require('../config/cloudinary')
+
+// const multer = require("multer");
+
+// const storage = multer.memoryStorage();
+// const uppload = multer({ storage }).single("image");
 
 const recipesByIdHandler = async (req, res) => {
   // Esta ruta obtiene el detalle de una receta específica. Es decir que devuelve un objeto con la información pedida en el detalle de una receta.
@@ -45,12 +51,29 @@ const createRecipeHandler = async (req, res) => {
   // Debe crear la receta en la base de datos, y debe estar relacionada con los tipos de dieta que se solicitan(al menos uno)
 
   // extaigo las propiedades que necesito para crear la receta
-  const { name, image, summary, healthScore, steps, diets } = req.body;
+
+  // uppload(req, res, function (err) {
+  //   if (err) return res.status(500).json({ err: err.message })
+  // })
+  const { name, summary, healthScore, steps, diets } = req.body;
 
   try {
-    //creo la receta con la funcion magica, le paso todas las propiedades que necesito
-    const newRecipe = await createRecipe(name, image, summary, healthScore, steps, diets);
-    res.status(201).json(newRecipe);
+    const result = await uploadImage(req.files.image.tempFilePath);
+
+    const imageUrl = result.secure_url;
+
+    const recipe = {
+      name,
+      summary,
+      healthScore,
+      steps: JSON.parse(steps),
+      image: imageUrl,
+      diets: JSON.parse(diets)
+    }
+  
+      //creo la receta con la funcion magica, le paso todas las propiedades que necesito
+      const newRecipe = await createRecipe(recipe);
+      res.status(201).json(newRecipe);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
