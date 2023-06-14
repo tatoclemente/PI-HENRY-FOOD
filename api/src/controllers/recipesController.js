@@ -27,7 +27,7 @@ const getRecipeById = async (id, source) => {
       name: recipeDB.name,
       image: recipeDB.image,
       summary: recipeDB.summary,
-      healtScore: recipeDB.healtScore,
+      healthScore: recipeDB.healthScore,
       steps: recipeDB.steps,
       diets: diets,
     };
@@ -46,7 +46,7 @@ const getRecipeById = async (id, source) => {
       name: data.title,
       image: data.image,
       sumary: data.summary,
-      healtScore: data.healthScore,
+      healthScore: data.healthScore,
       steps: data.analyzedInstructions[0]?.steps.map((step) => step.step),
       diets: data.diets,
     };
@@ -77,7 +77,7 @@ const getRecipesByName = async (name) => {
         name: recipe.name,
         image: recipe.image,
         sumary: recipe.summary,
-        healtScore: recipe.healtScore,
+        healthScore: recipe.healthScore,
         steps: recipe.steps,
         diets: diets,
         created: recipe.created,
@@ -102,7 +102,7 @@ const getRecipesByName = async (name) => {
         name: recipe.title,
         image: recipe.image,
         sumary: recipe.summary,
-        healtScore: recipe.healthScore,
+        healthScore: recipe.healthScore,
         steps: recipe.analyzedInstructions[0]?.steps?.map((step) => step.step),
         diets: recipe.diets,
       };
@@ -141,7 +141,7 @@ const getRecipesByName = async (name) => {
         name: recipe.name,
         image: recipe.image,
         sumary: recipe.summary,
-        healtScore: recipe.healtScore,
+        healthScore: recipe.healthScore,
         steps: recipe.steps,
         diets: diets,
         created: recipe.created,
@@ -162,7 +162,7 @@ const getRecipesByName = async (name) => {
         name: recipe.title,
         image: recipe.image,
         sumary: recipe.summary,
-        healtScore: recipe.healthScore,
+        healthScore: recipe.healthScore,
         steps: recipe.analyzedInstructions[0]?.steps.map((step) => step.step),
         diets: recipe.diets,
       };
