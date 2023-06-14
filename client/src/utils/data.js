@@ -30,7 +30,7 @@ export const recipes = [
     image: "https://spoonacular.com/recipeImages/715495-312x231.jpg",
     sumary:
       'Turkey Tomato Cheese Pizza might be just the <b>Mediterranean</b> recipe you are searching for. For <b>$1.84 per serving</b>, this recipe <b>covers 23%</b> of your daily requirements of vitamins and minerals. This hor d\'oeuvre has <b>221 calories</b>, <b>10g of protein</b>, and <b>8g of fat</b> per serving. This recipe serves 6. Head to the store and pick up bell pepper, parsley, onion, and a few other things to make it today. This recipe from Pink When has 910 fans. From preparation to the plate, this recipe takes around <b>15 minutes</b>. All things considered, we decided this recipe <b>deserves a spoonacular score of 97%</b>. This score is outstanding. Users who liked this recipe also liked <a href="https://spoonacular.com/recipes/turkey-tomato-pizza-430522">Turkey Tomato Pizza</a>, <a href="https://spoonacular.com/recipes/tomato-cheese-pizza-430570">Tomato Cheese Pizza</a>, and <a href="https://spoonacular.com/recipes/cheese-tomato-pizza-696636">Cheese & Tomato Pizza</a>.',
-    healtScore: 39,
+    healthScore: 39,
     steps: [
       {
         number: 1,
@@ -57,7 +57,7 @@ export const recipes = [
     image: "https://spoonacular.com/recipeImages/716426-312x231.jpg",
     sumary:
       'You can never have too many Chinese recipes, so give Cauliflower, Brown Rice, and Vegetable Fried Rice a try. This recipe serves 8 and costs $1.12 per serving. This hor d\'oeuvre has <b>192 calories</b>, <b>7g of protein</b>, and <b>6g of fat</b> per serving. Head to the store and pick up broccoli, sesame seeds, soy sauce, and a few other things to make it today. 3689 people were impressed by this recipe. It is brought to you by fullbellysisters.blogspot.com. It is a good option if you\'re following a <b>gluten free, dairy free, lacto ovo vegetarian, and vegan</b> diet. From preparation to the plate, this recipe takes roughly <b>30 minutes</b>. Overall, this recipe earns a <b>spectacular spoonacular score of 100%</b>. If you like this recipe, you might also like recipes such as <a href="https://spoonacular.com/recipes/cauliflower-brown-rice-and-vegetable-fried-rice-1584601">Cauliflower, Brown Rice, and Vegetable Fried Rice</a>, <a href="https://spoonacular.com/recipes/cauliflower-brown-rice-and-vegetable-fried-rice-1238897">Cauliflower, Brown Rice, and Vegetable Fried Rice</a>, and <a href="https://spoonacular.com/recipes/cauliflower-brown-rice-and-vegetable-fried-rice-1230097">Cauliflower, Brown Rice, and Vegetable Fried Rice</a>.',
-    healtScore: 75,
+    healthScore: 75,
     steps: [
       {
         number: 1,
@@ -104,7 +104,7 @@ export const recipes = [
     image: "https://spoonacular.com/recipeImages/715446-312x231.jpg",
     sumary:
       'If you want to add more <b>gluten free and dairy free</b> recipes to your recipe box, Slow Cooker Beef Stew might be a recipe you should try. One serving contains <b>434 calories</b>, <b>44g of protein</b>, and <b>12g of fat</b>. This recipe serves 6. For <b>$2.7 per serving</b>, this recipe <b>covers 45%</b> of your daily requirements of vitamins and minerals. It works best as a main course, and is done in approximately <b>8 hours and 10 minutes</b>. If you have green onions, carrots, celery, and a few other ingredients on hand, you can make it. This recipe is liked by 57 foodies and cooks. <b>Autumn</b> will be even more special with this recipe. It is brought to you by Pink When. Taking all factors into account, this recipe <b>earns a spoonacular score of 99%</b>, which is awesome. Similar recipes include <a href="https://spoonacular.com/recipes/slow-cooker-beef-stew-1578321">Slow Cooker Beef Stew</a>, <a href="https://spoonacular.com/recipes/slow-cooker-beef-stew-1241707">Slow Cooker Beef Stew</a>, and <a href="https://spoonacular.com/recipes/slow-cooker-beef-stew-1281171">Slow Cooker Beef Stew</a>.',
-    healtScore: 100,
+    healthScore: 100,
     steps: [
       {
         number: 1,
@@ -127,7 +127,7 @@ export const recipes = [
     image: "https://spoonacular.com/recipeImages/660306-312x231.jpg",
     sumary:
       'Slow Cooker: Pork and Garbanzo Beans takes approximately <b>45 minutes</b> from beginning to end. This recipe serves 6. This main course has <b>587 calories</b>, <b>66g of protein</b>, and <b>14g of fat</b> per serving. For <b>$2.99 per serving</b>, this recipe <b>covers 45%</b> of your daily requirements of vitamins and minerals. Head to the store and pick up water *2, cumin, pork should roast, and a few other things to make it today. This recipe is liked by 22 foodies and cooks. It is brought to you by Foodista. It is a good option if you\'re following a <b>gluten free and dairy free</b> diet. With a spoonacular <b>score of 96%</b>, this dish is outstanding. Similar recipes include <a href="https://spoonacular.com/recipes/slow-cooker-pork-and-beans-619424">Slow Cooker Pork and Beans</a>, <a href="https://spoonacular.com/recipes/slow-cooker-pork-and-beans-1242889">Slow Cooker Pork and Beans</a>, and <a href="https://spoonacular.com/recipes/slow-cooker-pork-and-beans-244959">Slow Cooker Pork and Beans</a>.',
-    healtScore: 100,
+    healthScore: 100,
     steps: [
       {
         number: 1,
@@ -154,7 +154,7 @@ export const recipes = [
     image: "https://spoonacular.com/recipeImages/715385-312x231.jpg",
     sumary:
       'Slow Cooker Baked Potato Soup might be a good recipe to expand your main course collection. This recipe serves 3. One portion of this dish contains approximately <b>35g of protein</b>, <b>33g of fat</b>, and a total of <b>884 calories</b>. For <b>$2.83 per serving</b>, this recipe <b>covers 36%</b> of your daily requirements of vitamins and minerals. 992 people were glad they tried this recipe. It is brought to you by Pink When. It is perfect for <b>Autumn</b>. If you have green onion tops, cream, water, and a few other ingredients on hand, you can make it. From preparation to the plate, this recipe takes roughly <b>9 hours</b>. All things considered, we decided this recipe <b>deserves a spoonacular score of 96%</b>. This score is excellent. Try <a href="https://spoonacular.com/recipes/slow-cooker-baked-potato-soup-569219">Slow cooker baked potato soup</a>, <a href="https://spoonacular.com/recipes/slow-cooker-baked-potato-soup-1399117">Slow Cooker Baked Potato Soup</a>, and <a href="https://spoonacular.com/recipes/slow-cooker-baked-potato-soup-731389">Slow Cooker Baked Potato Soup</a> for similar recipes.',
-    healtScore: 45,
+    healthScore: 45,
     steps: [],
     diets: [],
   },
@@ -164,7 +164,7 @@ export const recipes = [
     image: "https://spoonacular.com/recipeImages/1095753-312x231.jpg",
     sumary:
       'Roasted Cauliflower Detox Bowl with Tahini Sauce might be just the main course you are searching for. One serving contains <b>549 calories</b>, <b>18g of protein</b>, and <b>30g of fat</b>. This recipe serves 2 and costs $3.06 per serving. 1 person were glad they tried this recipe. A mixture of kale leaves, garlic, ground cumin, and a handful of other ingredients are all it takes to make this recipe so yummy. It is a good option if you\'re following a <b>gluten free, dairy free, lacto ovo vegetarian, and vegan</b> diet. From preparation to the plate, this recipe takes around <b>50 minutes</b>. It is brought to you by Foodista. All things considered, we decided this recipe <b>deserves a spoonacular score of 95%</b>. This score is awesome. <a href="https://spoonacular.com/recipes/quinoa-bowl-with-roasted-cauliflower-and-tahini-dressing-862308">Quinoa Bowl with Roasted Cauliflower and Tahini Dressing</a>, <a href="https://spoonacular.com/recipes/quinoa-bowl-with-roasted-cauliflower-and-tahini-dressing-1667949">Quinoa Bowl with Roasted Cauliflower and Tahini Dressing</a>, and <a href="https://spoonacular.com/recipes/roasted-cauliflower-with-tahini-sauce-658541">Roasted Cauliflower with Tahini Sauce</a> are very similar to this recipe.',
-    healtScore: 100,
+    healthScore: 100,
     steps: [
       {
         number: 1,
@@ -191,7 +191,7 @@ export const recipes = [
     image: "https://spoonacular.com/recipeImages/632252-312x231.jpg",
     sumary:
       'You can never have too many hor d\'oeuvre recipes, so give Alouette® Stuffed Mushroom Caps a try. Watching your figure? This dairy free, lacto ovo vegetarian, and vegan recipe has <b>30 calories</b>, <b>2g of protein</b>, and <b>0g of fat</b> per serving. This recipe serves 8. For <b>$1.5 per serving</b>, this recipe <b>covers 11%</b> of your daily requirements of vitamins and minerals. From preparation to the plate, this recipe takes about <b>45 minutes</b>. A couple people made this recipe, and 11 would say it hit the spot. Head to the store and pick up seasoned bread crumbs, mushroom caps, alouette spinach & artichoke spread, and a few other things to make it today. It is brought to you by Foodista. Taking all factors into account, this recipe <b>earns a spoonacular score of 96%</b>, which is great. Try <a href="https://spoonacular.com/recipes/stuffed-mushroom-caps-118382">Stuffed Mushroom Caps</a>, <a href="https://spoonacular.com/recipes/stuffed-mushroom-caps-558817">Stuffed Mushroom Caps</a>, and <a href="https://spoonacular.com/recipes/stuffed-white-mushroom-caps-313457">Stuffed White Mushroom Caps</a> for similar recipes.',
-    healtScore: 52,
+    healthScore: 52,
     steps: [
       {
         number: 1,
@@ -222,7 +222,7 @@ export const recipes = [
     image: "https://spoonacular.com/recipeImages/715391-312x231.jpg",
     sumary:
       'Forget going out to eat or ordering takeout every time you crave Mexican food. Try making Slow Cooker Chicken Taco Soup at home. One portion of this dish contains about <b>24g of protein</b>, <b>4g of fat</b>, and a total of <b>312 calories</b>. This gluten free and dairy free recipe serves 6 and costs <b>$1.41 per serving</b>. 2182 people have tried and liked this recipe. It works well as a main course. If you have black beans, chili beans, canned tomatoes, and a few other ingredients on hand, you can make it. It is perfect for <b>Autumn</b>. From preparation to the plate, this recipe takes around <b>8 hours and 5 minutes</b>. It is brought to you by Pink When. Overall, this recipe earns an <b>awesome spoonacular score of 95%</b>. Users who liked this recipe also liked <a href="https://spoonacular.com/recipes/slow-cooker-chicken-taco-soup-1399115">Slow Cooker Chicken Taco Soup</a>, <a href="https://spoonacular.com/recipes/slow-cooker-chicken-taco-soup-1228993">Slow Cooker Chicken Taco Soup</a>, and <a href="https://spoonacular.com/recipes/slow-cooker-chicken-taco-soup-1369307">Slow Cooker Chicken Taco Soup</a>.',
-    healtScore: 28,
+    healthScore: 28,
     steps: [
       {
         number: 1,
@@ -233,3 +233,15 @@ export const recipes = [
   },
 ];
 
+export const dietTypes = [
+	"gluten free",
+	"dairy free",
+	"lacto ovo vegetarian",
+	"vegan",
+	"paleolithic",
+	"primal",
+	"whole 30",
+	"pescatarian",
+	"ketogenic",
+	"fodmap friendly"
+]

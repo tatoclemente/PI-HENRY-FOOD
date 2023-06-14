@@ -1,9 +1,33 @@
-.cardsContainer {
+.mainContainer {
     margin-top: 100px;
+    min-height: 100vh;
+    width:800px;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.title {
+    background-color: var(--text-dark-);
+    padding: 5px 35px 10px 35px;
+    border-radius: 35px;
     width: 100%;
-    height: 100vh;
+    margin-top: 50px;
+    color: rgb(253, 253, 0);
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    box-shadow: -1.5px 1.5px 5px rgb(180, 180, 180);
+}
+.cardsContainer {
+    margin-bottom: 100px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 2rem;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+  
 }

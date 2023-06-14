@@ -1,22 +1,77 @@
 .container {
     position: fixed;
     top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 85px;
+    border-bottom: 2px solid var(--main-color);
+    width: 100%;
+    background-color: #2e2e2e;
+    box-shadow: 2px 0 5px var(--main-color);
+    z-index: 50;
+}
+.logoContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
-    border: 1px solid;
-    border-radius: 15px;
-    width: 1000px;
-    margin: 10px 0;
-    background-color: antiquewhite;
+    width: 210px;
+    justify-content: space-between;
+    color: var(--main-color);
 }
 
+.logo {
+    width: auto;
+    height: 60px;
+    filter: drop-shadow(2px 2px 5px black);
+}
+.menuContainer {
+    position: relative;
+}
 .menu {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+    width: 250px;
+    display: grid;
+    grid-template-rows: 1fr 1fr ;
+    grid-template-columns: auto auto;
+    justify-items: center;
+    align-items: center;
     list-style: none;
-    margin: 0 auto;
+    gap: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    
+    
+}
+.item a {
+    text-decoration: none;
+    color: var(--text-light);
+}
+.item:nth-child(1) {
+    margin-left: 14px;
+    margin-right: 80px;
+}
+.item:nth-child(3) {
+    grid-column: 1 / span 3;
+    grid-row: 2;
+    border-bottom: 1px solid var(--text-light);
+    text-transform: capitalize;
+}
 
+.emoji {
+    text-shadow: -1px -1px 8px rgb(0, 0, 0);
+    font-size: 1.5rem;
+    position: absolute;
+    left: -10px;
+    bottom: -5px;
+    animation: singpost .5s linear infinite alternate;
+    transition: .5s ease-out;
+}
+@keyframes singpost {
+    from {
+        transform: translateX(-10px);
+    }
+    to {
+        transform: translateX(0);
+    }
 }

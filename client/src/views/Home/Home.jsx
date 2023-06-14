@@ -1,23 +1,22 @@
-import React from 'react'
-import CardsContainer from '../../components/CardsContainer/CardsContainer'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { getRecipes } from '../../redux/actions'
+import React, { useEffect } from "react";
+import CardsContainer from "../../components/CardsContainer/CardsContainer";
+import style from "./Home.module.css";
+import { getAllRecipes } from "../../redux/action-creators/actions";
+import { useDispatch } from "react-redux";
 
-
-function Home() {
+function Home({ recipes }) {
 
   const dispatch = useDispatch();
 
   useEffect(()=> {
-    dispatch(getRecipes());
+    dispatch(getAllRecipes());
   }, [dispatch])
 
   return (
-    <div>
-      <CardsContainer />
+    <div className={style.mainContainer}>
+      <CardsContainer recipes={recipes} />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

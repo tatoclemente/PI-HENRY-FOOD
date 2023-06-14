@@ -1,21 +1,39 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import style from './NavBar.module.css'
+import SearchBar from '../SearchBar/SearchBar'
+import Logo from '../../images/gorrito-logo.png'
 
-function NavBar() {
+function NavBar(props) {
   return (
     <nav className={style.container}>
-        <ul className={style.menu}>
-            <li>
-                <NavLink to='/'>LANDING</NavLink>
-            </li>
-            <li>
-                <NavLink to='/home'>HOME</NavLink>
-            </li>
-            <li>
-                <NavLink to='/create'>FORM</NavLink>
-            </li>
-        </ul>
+        <div className={style.logoContainer}>
+            <img 
+            className={style.logo}
+            src={Logo} 
+            alt="logo" />            
+            <h1>Henry Food</h1>
+        </div>
+            <div>
+                <SearchBar
+                onSearch={props.onSearch}/>
+            </div>
+        <div>
+            <ul className={style.menuContainer}>
+                <div className={style.menu}>
+                    <li className={style.item}>
+                        <NavLink to='/home'>HOME</NavLink>
+                    </li>
+                    <li className={style.item}>
+                        <NavLink to='/'>LANDING</NavLink>
+                    </li>
+                    <li className={style.item}>
+                        <NavLink to='/create'>create your own recipe here!</NavLink>
+                    </li>
+                </div>
+                <span className={style.emoji}>👉</span>
+            </ul>
+        </div>
     </nav>
   )
 }

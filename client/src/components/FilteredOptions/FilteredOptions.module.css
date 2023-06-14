@@ -1,0 +1,47 @@
+.mainOptionsContainer {
+
+    width: 100%;
+    padding:10px 0;
+    margin-bottom: 50px;
+    background-color: rgb(24, 24, 24);
+    border-radius: 5px;
+}
+
+.mainOptionsContainer button {
+    width: 95%;
+    margin-bottom: 15px;
+    padding: 5px 0;
+    text-transform: uppercase;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.optionsContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.optionsContainer select {
+    border:1px solid var(--main-color);
+    background-color: var(--text-dark-);
+    color: var(--text-light);
+    border-radius: 5px;
+    padding:2px 5px;
+    letter-spacing: 1px;
+}
+
+/* .optionsContainer select option {
+    background-color: var(--text-dark-);
+    color: var(--text-light);
+} */
+.optionsContainer > select > option {
+    font-weight: 700;
+}
+
+.disabled-option {
+    color: gray;
+    pointer-events: none;
+  }
