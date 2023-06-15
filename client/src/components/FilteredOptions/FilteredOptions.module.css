@@ -1,10 +1,26 @@
 .mainOptionsContainer {
 
     width: 100%;
-    padding:10px 0;
-    margin-bottom: 50px;
+    padding-top:10px;
+    padding-bottom: 0;
     background-color: rgb(24, 24, 24);
     border-radius: 5px;
+}
+
+.pageNavigation {
+    display: flex;
+    justify-content: space-around;
+    justify-items: center;
+    margin-top: 15px !important;
+    margin: 0 auto;
+    width: 60%;
+
+}
+
+.navigationButton {
+    width: 170px !important;
+    height: 2rem !important;
+    
 }
 
 .mainOptionsContainer button {
@@ -13,9 +29,15 @@
     padding: 5px 0;
     text-transform: uppercase;
     border-radius: 5px;
-    background-color: var(--main-color);
+    background-color: var(--text-light);
     font-weight: 700;
+    border: none;
     cursor: pointer;
+    transition: .4s ease-in-out;
+}
+
+.mainOptionsContainer button:hover{
+    background-color: var(--main-color);
 }
 
 .optionsContainer {

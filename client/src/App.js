@@ -4,7 +4,7 @@ import NavBar from './components/NavBar/NavBar';
 import { Route, useLocation } from 'react-router-dom';
 import { getDiets, getRecipesByName, clearRecicesSearch } from './redux/action-creators/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ROUTE from './helpers/routes.helpers';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';

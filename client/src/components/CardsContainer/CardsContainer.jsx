@@ -15,9 +15,36 @@ function CardsContainer() {
 
   const dispatch = useDispatch()
 
+  const [currentPage, setCurrentPage ] = useState(0)
+  const perPage = 9
+
+  const startIdx = currentPage * perPage
+  const endIdx = startIdx + perPage
+
   const handleClick = () => {
     dispatch(clearRecicesSearch())
   }
+
+  const handlePageChange = (pageNumber) => {
+    if (pageNumber >= 0 && pageNumber < totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  }
+
+  const getTotalPages = () => {
+    let recipes = []
+    if(hasFilteredRecipes){
+      recipes = filteredRecipes
+    } else if (recipesByName.length > 0) {
+      recipes = recipesByName
+    } else {
+      recipes = allRecipes
+    }
+    return Math.ceil(recipes.length / perPage)
+  
+  }
+    
+  const totalPages = getTotalPages()
 
   return (
     <div className={style.mainContainer}>
@@ -26,10 +53,13 @@ function CardsContainer() {
           <h1 className={style.title}>Discover all our recipes</h1>
 
           <FilteredOptions 
-          title='See All Recipes'/>
+          title='See All Recipes' 
+          currentPage={currentPage} 
+          totalPages={totalPages}
+          handlePageChange={handlePageChange} />
           
           {hasFilteredRecipes ? 
-            filteredRecipes.map((recipe) => (
+            filteredRecipes.slice(startIdx, endIdx).map((recipe) => (
               <Card
                 key={recipe.id}
                 id={recipe.id}
@@ -41,7 +71,7 @@ function CardsContainer() {
                 diets={recipe.diets}
               />
             )) :
-            allRecipes.map((recipe) => (
+            allRecipes.slice(startIdx, endIdx).map((recipe) => (
               <Card
                 key={recipe.id}
                 id={recipe.id}
@@ -61,10 +91,13 @@ function CardsContainer() {
           <button onClick={handleClick} className={style.button}>🔙 Go back to see all the recipes again</button>
           <h1 className={style.title2}>here is your search</h1>
           <FilteredOptions 
-          title='See All Searches'/>
+          title='See All Searches'
+          currentPage={currentPage} 
+          totalPages={totalPages}
+          handlePageChange={handlePageChange}/>
 
           {hasFilteredRecipes ? 
-            filteredRecipes.map((recipe) => (
+            filteredRecipes.slice(startIdx, endIdx).map((recipe) => (
               <Card
                 key={recipe.id}
                 id={recipe.id}
@@ -76,7 +109,7 @@ function CardsContainer() {
                 diets={recipe.diets}
               />
             )) :
-            recipesByName.map((recipe) => (
+            recipesByName.slice(startIdx, endIdx).map((recipe) => (
               <Card
                 key={recipe.id}
                 id={recipe.id}

@@ -30,6 +30,7 @@
     font-size: 1.5rem;
     box-shadow: -1.5px 1.5px 5px rgb(180, 180, 180);
 }
+
 .cardsContainer {
     margin-bottom: 100px;
     display: grid;
