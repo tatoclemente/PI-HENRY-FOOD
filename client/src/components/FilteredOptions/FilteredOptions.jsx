@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearReacipeFiltered, filterByDiet, filterByOrigin, orderByName, orderByScore } from '../../redux/action-creators/actions'
 import style from './FilteredOptions.module.css'
 
-function FilteredOptions() {
+function FilteredOptions({title}) {
   const diets = useSelector(state => state.diets)
   const dispatch = useDispatch()
 
@@ -42,7 +42,7 @@ function FilteredOptions() {
 
   return (
     <div className={style.mainOptionsContainer}>
-    <button onClick={handleClearClick}>All Recipes</button>
+    <button onClick={handleClearClick}>{title}</button>
     <div className={style.optionsContainer}>
       <select name="filterByDiet" value={selectedDiet} onChange={handleFilterByDiet}>
         <option value="" disabled>Filter by Diet</option>

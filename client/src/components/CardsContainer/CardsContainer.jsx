@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "../Cards/Card";
 import style from "./CardsContainer.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { clearRecicesSearch, filterByDiet, filterByOrigin } from "../../redux/action-creators/actions";
+import { clearRecicesSearch } from "../../redux/action-creators/actions";
 import FilteredOptions from "../FilteredOptions/FilteredOptions";
 
 function CardsContainer() {
@@ -11,7 +11,7 @@ function CardsContainer() {
   
   const filteredRecipes = useSelector((state) => state.filteredRecipes);
   const hasFilteredRecipes = filteredRecipes.length > 0
-
+  console.log("RECETAS FILTRADAS",filteredRecipes);
 
   const dispatch = useDispatch()
 
@@ -25,7 +25,8 @@ function CardsContainer() {
         <div className={style.cardsContainer}>
           <h1 className={style.title}>Discover all our recipes</h1>
 
-          <FilteredOptions />
+          <FilteredOptions 
+          title='See All Recipes'/>
           
           {hasFilteredRecipes ? 
             filteredRecipes.map((recipe) => (
@@ -57,21 +58,36 @@ function CardsContainer() {
         ) :      
       (
         <div className={style.cardsContainer}>
-          <button onClick={handleClick}>Ver todas</button>
-          <h1 className={style.title}>here is your search</h1>
+          <button onClick={handleClick} className={style.button}>🔙 Go back to see all the recipes again</button>
+          <h1 className={style.title2}>here is your search</h1>
+          <FilteredOptions 
+          title='See All Searches'/>
 
-          {recipesByName.map((recipe) => (
-            <Card
-              key={recipe.id}
-              id={recipe.id}
-              name={recipe.name}
-              image={recipe.image}
-              sumary={recipe.summary}
-              healtScore={recipe.healthScore}
-              steps={recipe.steps}
-              diets={recipe.diets}
-            />
-          ))}
+          {hasFilteredRecipes ? 
+            filteredRecipes.map((recipe) => (
+              <Card
+                key={recipe.id}
+                id={recipe.id}
+                name={recipe.name}
+                image={recipe.image}
+                sumary={recipe.summary}
+                healtScore={recipe.healthScore}
+                steps={recipe.steps}
+                diets={recipe.diets}
+              />
+            )) :
+            recipesByName.map((recipe) => (
+              <Card
+                key={recipe.id}
+                id={recipe.id}
+                name={recipe.name}
+                image={recipe.image}
+                sumary={recipe.summary}
+                healtScore={recipe.healthScore}
+                steps={recipe.steps}
+                diets={recipe.diets}
+              />
+            ))}
         </div>
       )}
     </div>

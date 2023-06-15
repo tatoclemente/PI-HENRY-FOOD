@@ -1,11 +1,13 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useState, useEffect } from "react";
 import { RxMagnifyingGlass } from "react-icons/rx";
 import style from "./SearchBar.module.css";
+import { clearReacipeFiltered } from '../../redux/action-creators/actions';
 
 function SearchBar({ onSearch }) {
 
   const globalStateRecipes = useSelector((state) => state.allRecipes);
+  const dispatch = useDispatch()
 
   const [name, setName] = useState("");
   const [nameOptions, setNameOptions] = useState([]);
@@ -35,6 +37,7 @@ function SearchBar({ onSearch }) {
   const handleChange = (event) => {
     const { value } = event.target;
     setName(value);
+    
   };
 
   const handleNameClick = () => {
@@ -42,6 +45,7 @@ function SearchBar({ onSearch }) {
       setName("")
       setNameOptions([])
       onSearch(query)
+      dispatch(clearReacipeFiltered())
   }
 
   const handleSearchClick = (nameOption) => {
