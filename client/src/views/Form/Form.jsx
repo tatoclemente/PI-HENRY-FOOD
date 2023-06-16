@@ -34,9 +34,10 @@ function Form({postRecipe}) {
   const [form, setForm] = useState({
     name: "",
     summary:"",
-    healthScore: "",
+    healthScore: 0,
     image:""
   })
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -129,7 +130,7 @@ function Form({postRecipe}) {
       name: "",
       image: "",
       summary:"",
-      healthScore: ""
+      healthScore: 0
     })
 
     setSteps([])
@@ -176,13 +177,16 @@ function Form({postRecipe}) {
 
 {/*-------------- PUNTAJE DE SALUD -------------------------*/}
       <div className={style.inputContainer}>
-      <label>Health Score</label>
+      <label>Health Score: <span className={style.score}>{form.healthScore}</span></label>
         <input 
-        className={style.input} 
-        type="text" 
+        id='healthScoreRange'
+        className={style.inputScore} 
+        type="range" 
+        min={0}
+        max={100}
         value={form.healthScore} 
-        placeholder='Enter a number between 0 and 100...'
-        onChange={handleChange} name='healthScore'/>
+        onChange={handleChange} 
+        name='healthScore' />
       </div>
 
 

@@ -3,8 +3,9 @@
     width: 100%;
     padding-top:10px;
     padding-bottom: 0;
-    background-color: rgb(24, 24, 24);
+    background-color: var(--text-dark-);
     border-radius: 5px;
+    border: 1px solid var(--main-color);
 }
 
 .pageNavigation {
@@ -48,7 +49,7 @@
 }
 .optionsContainer select {
     border:1px solid var(--main-color);
-    background-color: var(--text-dark-);
+    background-color: rgb(24, 24, 24);
     color: var(--text-light);
     border-radius: 5px;
     padding:2px 5px;

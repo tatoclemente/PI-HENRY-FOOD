@@ -16,7 +16,8 @@
     color: rgb(253, 253, 0);
     text-transform: uppercase;
     font-size: 1.5rem;
-    box-shadow: -1.5px 1.5px 5px rgb(180, 180, 180);
+    border: 1px solid var(--main-color);
+    /* box-shadow: -1.5px 1.5px 5px rgb(180, 180, 180); */
 }
 
 .title2 {
@@ -28,7 +29,8 @@
     color: rgb(253, 253, 0);
     text-transform: uppercase;
     font-size: 1.5rem;
-    box-shadow: -1.5px 1.5px 5px rgb(180, 180, 180);
+    border: var(--main-color);
+    /* box-shadow: -1.5px 1.5px 5px rgb(62, 62, 62); */
 }
 
 .cardsContainer {

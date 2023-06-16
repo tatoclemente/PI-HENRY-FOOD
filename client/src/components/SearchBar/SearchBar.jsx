@@ -58,9 +58,9 @@ function SearchBar({ onSearch }) {
 
   return (
     <div className={style.searchBarContainer}>
-      <div className={style.label}>
+      {/* <div className={style.label}>
         <label>COME ON!, SEARCH YOUR FAVORITE RECIPES</label>
-      </div>
+      </div> */}
       <div className={style.searchBar}>
         <div className={style.inputContainer}>
           <input
