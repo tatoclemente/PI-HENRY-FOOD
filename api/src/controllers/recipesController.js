@@ -45,12 +45,12 @@ const getRecipeById = async (id, source) => {
       id: data.id,
       name: data.title,
       image: data.image,
-      sumary: data.summary,
+      summary: data.summary,
       healthScore: data.healthScore,
       steps: data.analyzedInstructions[0]?.steps.map((step) => step.step),
       diets: data.diets,
     };
-    console.log(recipeApi);
+    
     //* ULTIMO___ devuelvo la receta filtrada
     return recipeApi;
   }
@@ -76,7 +76,7 @@ const getRecipesByName = async (name) => {
         id: recipe.id,
         name: recipe.name,
         image: recipe.image,
-        sumary: recipe.summary,
+        summary: recipe.summary,
         healthScore: recipe.healthScore,
         steps: recipe.steps,
         diets: diets,
@@ -101,7 +101,7 @@ const getRecipesByName = async (name) => {
         id: recipe.id,
         name: recipe.title,
         image: recipe.image,
-        sumary: recipe.summary,
+        summary: recipe.summary,
         healthScore: recipe.healthScore,
         steps: recipe.analyzedInstructions[0]?.steps?.map((step) => step.step),
         diets: recipe.diets,
@@ -140,7 +140,7 @@ const getRecipesByName = async (name) => {
         id: recipe.id,
         name: recipe.name,
         image: recipe.image,
-        sumary: recipe.summary,
+        summary: recipe.summary,
         healthScore: recipe.healthScore,
         steps: recipe.steps,
         diets: diets,
@@ -161,7 +161,7 @@ const getRecipesByName = async (name) => {
         id: recipe.id,
         name: recipe.title,
         image: recipe.image,
-        sumary: recipe.summary,
+        summary: recipe.summary,
         healthScore: recipe.healthScore,
         steps: recipe.analyzedInstructions[0]?.steps.map((step) => step.step),
         diets: recipe.diets,
