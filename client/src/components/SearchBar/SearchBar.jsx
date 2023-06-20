@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useState, useEffect } from "react";
+
+// Import Icon
+import Glass from '../../images/searching.png';
+
 import { RxMagnifyingGlass } from "react-icons/rx";
 import style from "./SearchBar.module.css";
 import { clearReacipeFiltered } from '../../redux/action-creators/actions';
@@ -72,7 +76,7 @@ function SearchBar({ onSearch }) {
             className={style.input}
             autoComplete="off"
           />
-          <span className={style.glass}>{<RxMagnifyingGlass />}</span>
+          <span className={style.glass}><img className={style.glassImg} src={Glass} alt="glass" /></span>
         </div>
         <button
           className={style.button}

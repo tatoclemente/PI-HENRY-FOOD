@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./Card.module.css";
 
+import CheckOk from '../../images/check-mark.png';
+
 import { FiCheckSquare } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import ROUTE from "../../helpers/routes.helpers";
@@ -24,7 +26,7 @@ function Card(props) {
           <ul className={style.listDiets}>
             {props.diets?.map((diet) => (
               <li key={diet} className={style.dietsTypes}>
-                <span className={style.checkIcon}>{<FiCheckSquare />}</span>
+                <img src={CheckOk} alt="ckeck-icon" className={style.checkIcon} />
                 {diet}
               </li>
             ))}

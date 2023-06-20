@@ -1,21 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './Form.module.css';
 import { useSelector } from 'react-redux';
 // import { dietTypes } from '../../utils/data';
 
-import { MdCloudUpload, MdDelete } from 'react-icons/md';
-import { AiFillFileImage } from 'react-icons/ai';
-import { TiDelete } from 'react-icons/ti';
+//Import Icons
+import CloudUpload from '../../images/cloud-upload-icon.png';
+import FileImage from '../../images/file-image.png';
+import TrashWhite from '../../images/trash-white.png';
+import TrashRed from '../../images/trash-red.png';
+import DeleteIcon from '../../images/remove-icon.png';
+
 
 function Form({postRecipe}) {
 
   const dietTypes = useSelector((state) => state.diets);
 
-  const validate = (form) => {
+  const validate = (form, fileName) => {
+    console.log(fileName);
+    console.log(form.image);
     const errors = {}
-    if(!form.image) {
-      errors.image = "Image is required"
+
+    if(form.name.length === 0) { errors.name = "Name is required" }
+
+    if(form.name.length > 20) { errors.name = "Name must be less than 20 characters" }
+
+    if (fileName === "No selected image") {
+      errors.image = "Image is required";
     }
+
     return errors
   }
 
@@ -35,19 +47,18 @@ function Form({postRecipe}) {
     name: "",
     summary:"",
     healthScore: 0,
-    image:""
+    image:null
   })
 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setForm({...form, [name]: value});
-      setErrors({
-        ...errors, 
-        [name]: validate({...form, [name]: value})[name]
-      })
-  }
+    const updatedForm = { ...form, [name]: value };
+    setForm(updatedForm);
 
+    const fieldErrors = validate({ ...form, [name]: value }, fileName);
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: fieldErrors[name] }));
+  };
 //-----------------------------------------------------------------------------------
   /// STEPS HANDLERS
   
@@ -110,7 +121,25 @@ function Form({postRecipe}) {
       setFilename("No selected image");
       setImageFile(null);
     }
+
+    const imageErrors = validate(form, files && files[0] ? files[0].name : "No selected image");
+    setErrors((prevErrors) => ({ ...prevErrors, image: imageErrors.image }));
   }
+
+  const handleDeleteClick = () => {
+    setFilename("No selected image")
+    setImageFile(null)
+    setForm({ ...form, image: null })
+
+    const imageErrors = validate({ ...form, image: null }, "No selected image");
+    setErrors((prevErrors) => ({ ...prevErrors, image: imageErrors.image }));
+  
+  }
+
+  
+  // useEffect(() => {
+  //   setErrors(validate(form, fileName));
+  // }, [form, fileName]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -128,7 +157,7 @@ function Form({postRecipe}) {
 
     setForm({
       name: "",
-      image: "",
+      image: null,
       summary:"",
       healthScore: 0
     })
@@ -149,8 +178,11 @@ function Form({postRecipe}) {
 
   return (
     <form className={style.formContainer}>
+      <div className={style.bannerContainer}>
+        <div className={style.bannerShadow}></div>
+        <h1>GIVE US YOUR BEST DISH!</h1>
+      </div>
 
-      <h1>GIVE US YOUR BEST DISH!</h1>
 
 {/*---------------- NOMBRE DE LA RECETA ----------------------*/}
       <div className={style.inputContainer}>
@@ -160,6 +192,7 @@ function Form({postRecipe}) {
         type="text" value={form.name} 
         placeholder='Enter the name of your recipe...'
         onChange={handleChange} name="name"/>
+        {errors.name && <p className={style.warning}>{errors.name}</p>}
       </div>
 
 {/*---------------- RESUMEN DEL PLATO -----------------------*/}
@@ -212,7 +245,7 @@ function Form({postRecipe}) {
                           {step}
                         </span>
                       </div>
-                      <TiDelete 
+                      <img src={DeleteIcon} 
                       className={style.deleteIcon}
                       onClick={()=>handleDeleteStep(index)} />
                     </li>)
@@ -241,24 +274,21 @@ function Form({postRecipe}) {
 
         {imageFile? <img src={imageFile} alt={fileName} className={style.image}/> :
         <>
-          <MdCloudUpload className={style.uploaderIcon}/>
+          <img src={CloudUpload} className={style.uploaderIcon}/>
           <p>Browse Files to Upload</p>
         </>}
       </div>
 
       <section className={style.fileNameContainer}>
-        <AiFillFileImage className={style.fileIcon}/>
+        <img src={FileImage} className={style.fileIcon}/>
         <span className={style.nameContainer}>
           <span className={style.fileName}>
             {fileName} -
           </span>
-          <MdDelete 
-          className={imageFile?style.deleteIcon:style.deleteIconNull}
-          onClick={() => {
-            setFilename("No selected image")
-            setImageFile(null)
-          }}/>
+          {imageFile?<img src={TrashRed} className={style.deleteIcon} onClick={handleDeleteClick} />: <img src={TrashWhite} className={style.deleteIconNull} />}
         </span>
+
+        {errors.image && <p className={style.warning}>{errors.image}</p>}
       </section>
 
 

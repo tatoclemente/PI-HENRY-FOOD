@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed&display=swap');
 
 :root{
-  --main-color: rgb(253, 253, 0);
+  --main-color: #fdfd00;
   --text-light: #fff;
   --semi-light: #f7f7f7;
-  --semi-dark: #c0c0c0;
+  --semi-dark: #efefef;
+  --gray-color: #999999;
   --text-dark-: #2e2e2e;
   --button-hover: #2D63E0;
   --text-blue-light: #1f58df;
