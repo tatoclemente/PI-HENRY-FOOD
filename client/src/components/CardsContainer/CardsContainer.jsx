@@ -11,7 +11,7 @@ function CardsContainer() {
   
   const filteredRecipes = useSelector((state) => state.filteredRecipes);
   const hasFilteredRecipes = filteredRecipes.length > 0
-  console.log("RECETAS FILTRADAS",filteredRecipes);
+  // console.log("RECETAS FILTRADAS",filteredRecipes);
 
   const dispatch = useDispatch()
 
@@ -40,6 +40,7 @@ function CardsContainer() {
     } else {
       recipes = allRecipes
     }
+    
     return Math.ceil(recipes.length / perPage)
   
   }

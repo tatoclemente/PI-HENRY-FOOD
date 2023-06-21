@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import ROUTE from './helpers/routes.helpers';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+// import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
@@ -16,7 +16,7 @@ function App() {
   const recipesData = useSelector(state => state.recipesByName)
   const dispatch = useDispatch()
 
-  const history = useHistory()
+  // const history = useHistory()
 
   useEffect(() => {
     dispatch(getDiets())

@@ -1,8 +1,11 @@
 .detailContainer {
-    margin-top: 100px;
-    width: 100vh;
+    margin-top: 85px;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url('../../images/fondo-comida-dark.jpg');
+    background-attachment: fixed;
 }

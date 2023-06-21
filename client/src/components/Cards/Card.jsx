@@ -3,7 +3,6 @@ import style from "./Card.module.css";
 
 import CheckOk from '../../images/check-mark.png';
 
-import { FiCheckSquare } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import ROUTE from "../../helpers/routes.helpers";
 
@@ -24,7 +23,8 @@ function Card(props) {
         <div className={style.dietsTypesContainer}>
           <h5 className={style.listTitle}>Types of Diets</h5>
           <ul className={style.listDiets}>
-            {props.diets?.map((diet) => (
+            {props.diets?.length ===0? <p className={style.textNoDiets}>There are no diets assigned to this recipe</p>:
+            props.diets?.map((diet) => (
               <li key={diet} className={style.dietsTypes}>
                 <img src={CheckOk} alt="ckeck-icon" className={style.checkIcon} />
                 {diet}

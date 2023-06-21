@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 // Import Icon
 import Glass from '../../images/searching.png';
 
-import { RxMagnifyingGlass } from "react-icons/rx";
 import style from "./SearchBar.module.css";
 import { clearReacipeFiltered } from '../../redux/action-creators/actions';
 
@@ -16,14 +15,13 @@ function SearchBar({ onSearch }) {
   const [name, setName] = useState("");
   const [nameOptions, setNameOptions] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
     const nameData = globalStateRecipes.map((recipe) => recipe.name);
     
     const filteredNameData = nameData.filter((nameState) => nameState.toLowerCase().includes(name.toLowerCase()));
 
     const limitedOptions = filteredNameData.slice(0, 10);
 
-    console.log(limitedOptions);
     if (limitedOptions.length > 0 && name.length > 0) {
       setNameOptions(limitedOptions);     
     } else {
@@ -34,7 +32,7 @@ function SearchBar({ onSearch }) {
       setNameOptions([]);
     };
     
-  }, [name]);
+  }, [name, globalStateRecipes]);
 
   // console.log(nameOptions);
 

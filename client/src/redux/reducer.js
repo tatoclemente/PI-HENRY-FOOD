@@ -45,8 +45,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
       ? state.recipesByName
       : state.allRecipes;
 
-      console.log(recipesToFilter);
-
       const filterByDiet = recipesToFilter.filter((recipe) =>
         recipe.diets?.includes(payload)
       );

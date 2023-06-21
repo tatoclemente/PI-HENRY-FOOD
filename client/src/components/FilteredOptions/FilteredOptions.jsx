@@ -13,45 +13,69 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
   const diets = useSelector((state) => state.diets);
   const dispatch = useDispatch();
 
-  const [selectedDiet, setSelectedDiet] = useState("");
-  const [selectedOrigin, setSelectedOrigin] = useState("");
-  const [selectedOrderByName, setSelectedOrderByName] = useState("");
-  const [selectedOrderByHealth, setSelectedOrderByHealth] = useState("");
+  const [filterOptions, setFilterOptions] = useState({
+    selectedDiet: "",
+    selectedOrigin: "",
+    selectedOrderByName: "",
+    selectedOrderByHealth: ""
+  });
 
   const handleFilterByDiet = (event) => {
     dispatch(filterByDiet(event.target.value));
-    setSelectedDiet(event.target.value);
+    setFilterOptions((prevState) => ({
+      ...prevState,
+      selectedDiet: event.target.value
+    }));
+    handleFilterChange()
   };
 
   const handleFilterByOrigin = (event) => {
     dispatch(filterByOrigin(event.target.value));
-    setSelectedOrigin(event.target.value);
+    setFilterOptions((prevState) => ({
+      ...prevState,
+      selectedOrigin: event.target.value
+    }));
+    handleFilterChange()
   };
 
   const handleClearClick = () => {
     dispatch(clearReacipeFiltered());
-    setSelectedDiet("");
-    setSelectedOrigin("");
-    setSelectedOrderByName("");
-    setSelectedOrderByHealth("");
+    setFilterOptions({
+      selectedDiet: "",
+      selectedOrigin: "",
+      selectedOrderByName: "",
+      selectedOrderByHealth: ""
+    })
+    handleFilterChange()
   };
   const handleOrderByName = (event) => {
     dispatch(orderByName(event.target.value));
-    setSelectedOrderByName(event.target.value);
+    setFilterOptions((prevState) => ({
+      ...prevState,
+      selectedOrderByName: event.target.value
+    }));
+    handleFilterChange()
   };
 
   const handleOrderByScore = (event) => {
     dispatch(orderByScore(event.target.value));
-    setSelectedOrderByHealth(event.target.value);
+    setFilterOptions((prevState) => ({
+      ...prevState,
+      selectedOrderByHealth: event.target.value
+    }));
+    handleFilterChange()
   };
 
+  const handleFilterChange = () => {
+    handlePageChange(0); // Establecer currentPage en 0
+  };
   return (
     <div className={style.mainOptionsContainer}>
       <button onClick={handleClearClick}>{title}</button>
       <div className={style.optionsContainer}>
         <select
           name="filterByDiet"
-          value={selectedDiet}
+          value={filterOptions.selectedDiet}
           onChange={handleFilterByDiet}
         >
           <option value="" disabled>
@@ -65,7 +89,7 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
         </select>
         <select
           name="filteredByOrigin"
-          value={selectedOrigin}
+          value={filterOptions.selectedOrigin}
           onChange={handleFilterByOrigin}
         >
           <option value="" disabled>
@@ -76,7 +100,7 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
         </select>
         <select
           name=""
-          value={selectedOrderByName}
+          value={filterOptions.selectedOrderByName}
           onChange={handleOrderByName}
         >
           <option value="" disabled>
@@ -87,7 +111,7 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
         </select>
         <select
           name=""
-          value={selectedOrderByHealth}
+          value={filterOptions.selectedOrderByHealth}
           onChange={handleOrderByScore}
         >
           <option value="" disabled>

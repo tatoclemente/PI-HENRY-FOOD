@@ -27,7 +27,6 @@ export const getDiets = () => {
   return async (dispatch) => {
     const response = await axios.get("/diets");
     const diets = response.data;
-    console.log(diets);
     dispatch({
       type: GET_DIETS,
       payload: diets,
