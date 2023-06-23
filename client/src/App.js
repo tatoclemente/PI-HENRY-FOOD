@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import ROUTE from './helpers/routes.helpers';
 import axios from 'axios';
+import Spinner from './components/Spinner/Spinner';
 // import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
@@ -14,6 +15,7 @@ import axios from 'axios';
 function App() {
   const dispatch = useDispatch()
   const [isSearchPerformed, setIsSearchPerformed] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
   const onSearch = (name) => {
     if (!name) {
       window.alert("Ups, lo siento, debe ingresar un nombre de receta")
@@ -27,7 +29,7 @@ function App() {
   const postRecipe = async (formData) => {
 
     console.log("--------------FRONT------------------");
-
+    setShowSpinner(true)
     for (const entry of formData.entries()) {
       console.log(entry);
     }
@@ -41,6 +43,8 @@ function App() {
     } catch (error) {
       window.alert("Error al enviar el formulario")
       throw Error({error: error.message})
+    } finally {
+      setShowSpinner(false)
     }
   }
 
@@ -60,7 +64,8 @@ function App() {
         isSearchPerformed={isSearchPerformed} /> } />
 
         <Route path={ROUTE.CREATE} render={ () => <Form 
-        postRecipe={postRecipe}/> } />
+        postRecipe={postRecipe}
+        showSpinner={showSpinner} /> } />
 
         <Route path={`${ROUTE.DETAIL}/:detailId`} render={ () => <Detail /> } />
 

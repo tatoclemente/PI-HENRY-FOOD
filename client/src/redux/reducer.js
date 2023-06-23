@@ -11,15 +11,17 @@ import {
   ADD_NEW_RECIPE
 } from "./action-creators/types";
 
-// import { recipes, dietTypes } from "../utils/data";
+import { recipes, dietTypes } from "../utils/data";
 
 const initialState = {
   allRecipes: [],
   // allRecipes: recipes,
-  filteredRecipes: [],
   // diets: dietTypes,
   diets: [],
   recipesByName: [],
+
+  filteredRecipes: [],
+
 };
 
 
@@ -54,11 +56,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, filteredRecipes: payload };
 
     case FILTER_BY_DIET:
-      const recipesToFilter = state.recipesByName.length > 0
-      ? state.recipesByName
-      : state.allRecipes;
+      // const recipesToFilter = state.recipesByName.length > 0
+      // ? state.recipesByName
+      // : state.allRecipes;
 
-      const filterByDiet = recipesToFilter.filter((recipe) =>
+      const filterByDiet = recipesToSort.filter((recipe) =>
         recipe.diets?.includes(payload)
       );
       if (filterByDiet.length === 0)
@@ -69,12 +71,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, filteredRecipes: filterByDiet };
 
     case FILTER_BY_ORIGIN:
-      const recipesToFilterOrigin = state.recipesByName.length > 0
-      ? state.recipesByName
-      : state.allRecipes;
+      // const recipesToFilterOrigin = state.recipesByName.length > 0
+      // ? state.recipesByName
+      // : state.allRecipes;
 
       if (payload === "created") {
-        const filterByOrigin = recipesToFilterOrigin.filter(
+        const filterByOrigin = recipesToSort.filter(
           (recipe) => recipe.created === true
         );
         if (filterByOrigin.length === 0){
@@ -82,7 +84,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         } 
         return { ...state, filteredRecipes: filterByOrigin };
       } else {
-        const filterByOriginApi = recipesToFilterOrigin.filter(
+        const filterByOriginApi = recipesToSort.filter(
           (recipe) => recipe.created === undefined
         );
         if (filterByOriginApi.length === 0){

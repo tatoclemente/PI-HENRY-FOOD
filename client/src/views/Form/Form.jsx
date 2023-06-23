@@ -10,7 +10,9 @@ import TrashWhite from "../../images/trash-white.png";
 import TrashRed from "../../images/trash-red.png";
 import DeleteIcon from "../../images/remove-icon.png";
 
-function Form({ postRecipe }) {
+import Spinner from "../../components/Spinner/Spinner";
+
+function Form({ postRecipe, showSpinner }) {
   const dietTypes = useSelector((state) => state.diets);
 
   const validate = (form, fileName, steps) => {
@@ -193,6 +195,8 @@ function Form({ postRecipe }) {
         
       postRecipe(formData);
 
+
+
       setForm({
         name: "",
         image: null,
@@ -220,6 +224,16 @@ function Form({ postRecipe }) {
   const handleClick = () => {
     document.querySelector("#upload-input").click();
   };
+
+  if (showSpinner) {
+    return (
+      <div className={style.spinnerContainer}>
+         <Spinner />; 
+      </div>
+    )
+   // Renderiza el spinner si showSpinner es true
+  }
+
 
   return (
     <form className={style.formContainer}>

@@ -28,6 +28,7 @@ function CardsContainer() {
   const handlePageChange = (pageNumber) => {
     if (pageNumber >= 0 && pageNumber < totalPages) {
       setCurrentPage(pageNumber);
+      window.scrollTo(0, 200);
     }
   }
 
@@ -50,7 +51,7 @@ function CardsContainer() {
   return (
     <div className={style.mainContainer}>
       {recipesByName.length === 0 ? (
-        <div className={style.cardsContainer}>
+        <div className={style.viewContainer}>
           <h1 className={style.title}>Discover all our recipes</h1>
 
           <FilteredOptions 
@@ -58,37 +59,44 @@ function CardsContainer() {
           currentPage={currentPage} 
           totalPages={totalPages}
           handlePageChange={handlePageChange} />
-          
-          {hasFilteredRecipes ? 
-            filteredRecipes.slice(startIdx, endIdx).map((recipe) => (
-              <Card
-                key={recipe.id}
-                id={recipe.id}
-                name={recipe.name}
-                image={recipe.image}
-                sumary={recipe.summary}
-                healtScore={recipe.healthScore}
-                steps={recipe.steps}
-                diets={recipe.diets}
-              />
-            )) :
-            allRecipes.slice(startIdx, endIdx).map((recipe) => (
-              <Card
-                key={recipe.id}
-                id={recipe.id}
-                name={recipe.name}
-                image={recipe.image}
-                sumary={recipe.summary}
-                healtScore={recipe.healthScore}
-                steps={recipe.steps}
-                diets={recipe.diets}
-              />
-            ))
-        }
+          <div className={style.cardsContainer}>
+            {hasFilteredRecipes ? 
+              filteredRecipes.slice(startIdx, endIdx).map((recipe) => (
+                <Card
+                  key={recipe.id}
+                  id={recipe.id}
+                  name={recipe.name}
+                  image={recipe.image}
+                  sumary={recipe.summary}
+                  healtScore={recipe.healthScore}
+                  steps={recipe.steps}
+                  diets={recipe.diets}
+                />
+              )) :
+              allRecipes.slice(startIdx, endIdx).map((recipe) => (
+                <Card
+                  key={recipe.id}
+                  id={recipe.id}
+                  name={recipe.name}
+                  image={recipe.image}
+                  sumary={recipe.summary}
+                  healtScore={recipe.healthScore}
+                  steps={recipe.steps}
+                  diets={recipe.diets}
+                />
+              ))
+          }
+
+          </div>
+          <FilteredOptions 
+          title='See All Recipes' 
+          currentPage={currentPage} 
+          totalPages={totalPages}
+          handlePageChange={handlePageChange} />
         </div>
         ) :      
       (
-        <div className={style.cardsContainer}>
+        <div className={style.viewContainer}>
           <button onClick={handleClick} className={style.button}>🔙 Go back to see all the recipes again</button>
           <h1 className={style.title2}>here is your search</h1>
           <FilteredOptions 
@@ -96,32 +104,33 @@ function CardsContainer() {
           currentPage={currentPage} 
           totalPages={totalPages}
           handlePageChange={handlePageChange}/>
-
-          {hasFilteredRecipes ? 
-            filteredRecipes.slice(startIdx, endIdx).map((recipe) => (
-              <Card
-                key={recipe.id}
-                id={recipe.id}
-                name={recipe.name}
-                image={recipe.image}
-                sumary={recipe.summary}
-                healtScore={recipe.healthScore}
-                steps={recipe.steps}
-                diets={recipe.diets}
-              />
-            )) :
-            recipesByName.slice(startIdx, endIdx).map((recipe) => (
-              <Card
-                key={recipe.id}
-                id={recipe.id}
-                name={recipe.name}
-                image={recipe.image}
-                sumary={recipe.summary}
-                healtScore={recipe.healthScore}
-                steps={recipe.steps}
-                diets={recipe.diets}
-              />
-            ))}
+          <div className={style.cardsContainer}>
+            {hasFilteredRecipes ? 
+              filteredRecipes.slice(startIdx, endIdx).map((recipe) => (
+                <Card
+                  key={recipe.id}
+                  id={recipe.id}
+                  name={recipe.name}
+                  image={recipe.image}
+                  sumary={recipe.summary}
+                  healtScore={recipe.healthScore}
+                  steps={recipe.steps}
+                  diets={recipe.diets}
+                />
+              )) :
+              recipesByName.slice(startIdx, endIdx).map((recipe) => (
+                <Card
+                  key={recipe.id}
+                  id={recipe.id}
+                  name={recipe.name}
+                  image={recipe.image}
+                  sumary={recipe.summary}
+                  healtScore={recipe.healthScore}
+                  steps={recipe.steps}
+                  diets={recipe.diets}
+                />
+              ))}
+          </div>
         </div>
       )}
     </div>

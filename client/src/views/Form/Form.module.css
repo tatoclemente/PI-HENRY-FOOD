@@ -330,3 +330,12 @@
     border-right: 10px solid transparent;
     border-bottom: 10px solid #ffdddd;
 }
+
+.spinnerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('../../images/fondo-comida-dark.jpg');
+}

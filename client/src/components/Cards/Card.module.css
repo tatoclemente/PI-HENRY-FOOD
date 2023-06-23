@@ -2,14 +2,14 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 750px;
-    height: 300px;
+    width: 100%;
+    height: 380px;
     font-family: 'roboto', sans-serif;
     border:1px solid var(--main-color);
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 1px 1px 10px rgba(69, 69, 69, 0.5);
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     transition: .5s ease-in-out;
 }
 
@@ -33,7 +33,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 18%;
+    height: 35%;
     background-color: rgb(24, 24, 24);
     padding: .6rem;
     border-bottom: 1px solid rgb(180, 180, 180);
@@ -41,13 +41,16 @@
     
 }
 .contentContainer {
-    height: 82%;
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
 }
 
 
 .imageContainer {
-    width: 65%;
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -61,11 +64,12 @@
     object-position: bottom;
 }
 .dietsTypesContainer {
-    width: 35%;
+    width: 100%;
+    height: 100%;
     list-style: none;
     font-family: 'Saira Semi Condensed', sans-serif;
     color: var(--text-light);
-    padding: .5rem 0;
+    padding: 0;
     border-left: 1px solid rgb(180, 180, 180);
     display: flex;
     flex-direction: column;
@@ -82,8 +86,16 @@
 }
 
 .textNoDiets {
-    text-align: left;
-    margin-left: 10px;
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.listDiets {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    padding: 0 5px;
 }
 
 .dietsTypes {

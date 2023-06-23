@@ -27,6 +27,7 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
       selectedDiet: event.target.value
     }));
     handleFilterChange()
+    window.scrollTo(0, 0);
   };
 
   const handleFilterByOrigin = (event) => {
@@ -36,6 +37,7 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
       selectedOrigin: event.target.value
     }));
     handleFilterChange()
+    window.scrollTo(0, 0);
   };
 
   const handleClearClick = () => {
@@ -47,6 +49,7 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
       selectedOrderByHealth: ""
     })
     handleFilterChange()
+    window.scrollTo(0, 0);
   };
   const handleOrderByName = (event) => {
     dispatch(orderByName(event.target.value));
@@ -55,6 +58,7 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
       selectedOrderByName: event.target.value
     }));
     handleFilterChange()
+    window.scrollTo(0, 0);
   };
 
   const handleOrderByScore = (event) => {
@@ -64,6 +68,7 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
       selectedOrderByHealth: event.target.value
     }));
     handleFilterChange()
+    window.scrollTo(0, 0);
   };
 
   const handleFilterChange = () => {
@@ -117,8 +122,8 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
           <option value="" disabled>
             Order by Health Score
           </option>
-          <option value="more">Healthier</option>
-          <option value="less">Less healthy</option>
+          <option value="more">More Healthy</option>
+          <option value="less">Less Healthy</option>
         </select>
       </div>
       <div className={style.pageNavigation}>

@@ -23,7 +23,7 @@ function DetailInfo({recipe}) {
       <p className={style.summary}>{parsedSummary}</p>
       <div className={style.imageContainer}>
         <img 
-          src={recipe.image} 
+          src={recipe?.image} 
           onError={(e) => e.target.src = notAvailableImage} 
           alt={recipe.name} 
           className={style.image} />

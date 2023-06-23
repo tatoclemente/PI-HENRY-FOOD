@@ -10,11 +10,7 @@ export const recipes = [
 			"Paso 2",
 			"Paso 3"
 		],
-		"diets": [
-			"vegan",
-			"whole 30",
-			"fodmap friendly"
-		],
+		"diets": [],
 		"created": true
 	},
 	{
