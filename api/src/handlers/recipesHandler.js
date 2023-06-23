@@ -1,6 +1,9 @@
 const { getRecipeById, createRecipe, getRecipesByName } = require("../controllers/recipesController");
 
-const uploadImage = require('../config/cloudinary')
+const uploadImage = require('../config/cloudinary');
+
+const fs = require('fs');
+const path = require("path");
 
 // const multer = require("multer");
 
@@ -60,7 +63,28 @@ const createRecipeHandler = async (req, res) => {
   try {
     const result = await uploadImage(req.files.image.tempFilePath);
 
+
     const imageUrl = result.secure_url;
+    
+    if(imageUrl) {
+      const uploadFolderPath = path.join(__dirname, '..', '..', 'uploads')
+      fs.readdir(uploadFolderPath, (err, files) => {
+        if(err) {
+          console.error('Error al leer los archivos: '), err;
+        }else {
+          files.forEach((file) => {
+            const filePath = path.join(uploadFolderPath, file);
+            fs.unlink(filePath, (err) => {
+              if (err) {
+                console.error('Error al eliminar el archivo: '), err;
+              } else {
+                console.log(`Archivo ${filePath} eliminado con éxito`)
+              }
+            })
+          })
+        }
+      })
+    }
 
     const recipe = {
       name,

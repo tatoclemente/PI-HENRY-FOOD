@@ -178,7 +178,7 @@ const getRecipesByName = async (name) => {
 };
 
 const createRecipe = async (recipe) => {
-  console.log("LO QUE RECIBO AL CONTROLLER: ", recipe);
+  // console.log("LO QUE RECIBO AL CONTROLLER: ", recipe);
 
   if (
     !recipe.name ||
@@ -204,10 +204,12 @@ const createRecipe = async (recipe) => {
   });
 
   // agrego las dietas a mi receta con el metodo addDiet que me proporciona sequelize al relacionar mis modelos
-  newRecipe.addDiet(dietDB);
+  await newRecipe.addDiet(dietDB);
 
-  if (newRecipe) {
-    return { message: "Recipe created successfully" };
+  const createdRecipe = await getRecipeById(newRecipe.id, "bdd")
+
+  if (createdRecipe) {
+    return createdRecipe;
   }
   throw Error("Error uploading recipe");
 };
