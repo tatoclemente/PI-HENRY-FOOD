@@ -228,6 +228,7 @@ function Form({ postRecipe, showSpinner }) {
   if (showSpinner) {
     return (
       <div className={style.spinnerContainer}>
+        <p>Please Wait...</p>
          <Spinner />; 
       </div>
     )
