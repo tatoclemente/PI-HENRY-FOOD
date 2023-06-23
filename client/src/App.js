@@ -2,9 +2,9 @@ import './App.css';
 import { Home, Landing, Form, Detail } from './views'
 import NavBar from './components/NavBar/NavBar';
 import { Route, useLocation } from 'react-router-dom';
-import { getDiets, getRecipesByName, clearRecicesSearch } from './redux/action-creators/actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { getRecipesByName, clearRecicesSearch, addNewRecipe } from './redux/action-creators/actions';
+import { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import ROUTE from './helpers/routes.helpers';
 import axios from 'axios';
 // import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -12,17 +12,8 @@ import axios from 'axios';
 
 
 function App() {
-  
-  const recipesData = useSelector(state => state.recipesByName)
   const dispatch = useDispatch()
-
-  // const history = useHistory()
-
-  useEffect(() => {
-    dispatch(getDiets())
-  }, [])
-
-
+  const [isSearchPerformed, setIsSearchPerformed] = useState(false);
   const onSearch = (name) => {
     if (!name) {
       window.alert("Ups, lo siento, debe ingresar un nombre de receta")
@@ -30,6 +21,7 @@ function App() {
   } 
     dispatch(clearRecicesSearch())
     dispatch(getRecipesByName(name))
+    setIsSearchPerformed(true);
   }
 
   const postRecipe = async (formData) => {
@@ -42,9 +34,9 @@ function App() {
 
     try {
       const {data} = await axios.post('http://localhost:3001/recipes', formData)
-      console.log(data.message);
-      if (data.message === "Recipe created successfully")
+      if (data.name)
       window.alert("Felicitaciones, has creado una receta con exito")
+      dispatch(addNewRecipe(data))
       // history.push(ROUTE.HOME)
     } catch (error) {
       window.alert("Error al enviar el formulario")
@@ -53,6 +45,7 @@ function App() {
   }
 
   const location = useLocation()
+
   return (
     <div className="App">
 
@@ -64,7 +57,7 @@ function App() {
         <Route exact path={ROUTE.LANDING} render={ () => <Landing /> } />
 
         <Route path={ROUTE.HOME} render={ () => <Home 
-        recipes={recipesData}/> } />
+        isSearchPerformed={isSearchPerformed} /> } />
 
         <Route path={ROUTE.CREATE} render={ () => <Form 
         postRecipe={postRecipe}/> } />

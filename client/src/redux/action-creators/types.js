@@ -4,7 +4,7 @@ export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
 
 export const GET_DIETS = "GET_DIETS";
 
-export const DELETE_RECIPE = "DELETE_RECIPE";
+export const CLEAR_RECIPE_BY_NAME = "CLEAR_RECIPE_BY_NAME";
 
 export const CLEAR_RECIPE_FILTERED = "CLEAR_RECIPE_FILTERED";
 
@@ -15,3 +15,5 @@ export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 export const ORDER_BY_SCORE = "ORDER_BY_SCORE";
 
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
+
+export const ADD_NEW_RECIPE = "ADD_NEW_RECIPE"

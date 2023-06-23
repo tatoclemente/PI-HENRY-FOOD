@@ -2,18 +2,19 @@ import {
   GET_RECIPES_BY_NAME,
   GET_ALL_RECIPES,
   GET_DIETS,
-  DELETE_RECIPE,
+  CLEAR_RECIPE_BY_NAME,
   FILTER_BY_DIET,
   FILTER_BY_ORIGIN,
   ORDER_BY_NAME,
   ORDER_BY_SCORE,
   CLEAR_RECIPE_FILTERED,
+  ADD_NEW_RECIPE
 } from "./action-creators/types";
 
 // import { recipes, dietTypes } from "../utils/data";
 
 const initialState = {
-    allRecipes: [],
+  allRecipes: [],
   // allRecipes: recipes,
   filteredRecipes: [],
   // diets: dietTypes,
@@ -21,7 +22,16 @@ const initialState = {
   recipesByName: [],
 };
 
+
 const rootReducer = (state = initialState, { type, payload }) => {
+
+  // GUARDO el valor de mi estado global de acuerdo a lo que estoy renderizando en ese momento
+  const recipesToSort = state.filteredRecipes.length > 0
+  ? state.filteredRecipes // Usar las recetas filtradas si existen
+  : state.recipesByName.length > 0
+  ? state.recipesByName // Usar las recetas filtradas por nombre si existen
+  : state.allRecipes; // Usar todas las recetas si no hay filtrados
+
   switch (type) {
     case GET_ALL_RECIPES:
       return { ...state, allRecipes: payload };
@@ -32,13 +42,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_RECIPES_BY_NAME:
       return { ...state, recipesByName: payload };
 
-    case DELETE_RECIPE:
+    case CLEAR_RECIPE_BY_NAME:
       return { ...state, recipesByName: payload };
+
+    case ADD_NEW_RECIPE:
+      return { ...state, allRecipes:[payload, ...state.allRecipes]};
 
     // FILTRADOS
 
     case CLEAR_RECIPE_FILTERED:
-      return { ...state, filteredRecipes: [] };
+      return { ...state, filteredRecipes: payload };
 
     case FILTER_BY_DIET:
       const recipesToFilter = state.recipesByName.length > 0
@@ -77,12 +90,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
         } 
         return { ...state, filteredRecipes: filterByOriginApi };
       }
+   //LOS ORDENAMIENTOS USAN EL VALOR QUE GUARDE ANTERIORMENTE DEL ESTADO GLOBAL QUE SE ESTA RENDERIZANDO
     case ORDER_BY_NAME:
-      const recipesToSortByName = state.recipesByName.length > 0
-      ? state.recipesByName
-      : state.allRecipes;
 
-      const sortedByName = [...recipesToSortByName].sort((a, b) => {
+      const sortedByName = [...recipesToSort].sort((a, b) => {
         if (payload === "asc") {
           return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
         } else if (payload === "dsc") {
@@ -94,11 +105,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, filteredRecipes: sortedByName };
 
       case ORDER_BY_SCORE:
-        const recipesToSortByScore = state.recipesByName.length > 0
-        ? state.recipesByName
-        : state.allRecipes;
+        // const recipesToSortByScore = state.recipesByName.length > 0
+        // ? state.recipesByName
+        // : state.allRecipes;
 
-        const sortedByScore = [...recipesToSortByScore].sort((a, b) => {
+        const sortedByScore = [...recipesToSort].sort((a, b) => {
           if(payload === 'more') {
             return b.healthScore - a.healthScore
           } else if (payload === 'less') {

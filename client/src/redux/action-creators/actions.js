@@ -3,12 +3,13 @@ import {
   GET_ALL_RECIPES,
   GET_DIETS,
   GET_RECIPES_BY_NAME,
-  DELETE_RECIPE,
+  CLEAR_RECIPE_BY_NAME,
   CLEAR_RECIPE_FILTERED,
   FILTER_BY_DIET,
   ORDER_BY_NAME,
   ORDER_BY_SCORE,
-  FILTER_BY_ORIGIN
+  FILTER_BY_ORIGIN,
+  ADD_NEW_RECIPE
 } from "./types";
 
 export const getAllRecipes = () => {
@@ -53,9 +54,16 @@ export const getRecipesByName = (name) => {
   };
 };
 
+export const addNewRecipe = (recipe) => {
+  return {
+    type: ADD_NEW_RECIPE,
+    payload: recipe
+  }
+}
+
 export const clearRecicesSearch = () => {
   return {
-    type: DELETE_RECIPE,
+    type: CLEAR_RECIPE_BY_NAME,
     payload: [],
   };
 };

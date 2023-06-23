@@ -16,20 +16,23 @@ function NavBar(props) {
       <div>
         {location.pathname === '/home' && <SearchBar onSearch={props.onSearch} />}
       </div>
-      <div>
-        <ul className={style.menuContainer}>
+      <div className={style.menuContainer}>
+        <ul>
           <div className={style.menu}>
             <li className={style.item}>
-              <NavLink to="/home">HOME</NavLink>
+              <NavLink to="/home" activeClassName={style.active}>HOME</NavLink>
             </li>
             <li className={style.item}>
-              <NavLink to="/">LANDING</NavLink>
-            </li>
-            <li className={style.item}>
-              <NavLink to="/create">create your own recipe here!</NavLink>
+              <NavLink exact to="/" activeClassName={style.active}>LANDING</NavLink>
             </li>
           </div>
-          <span className={style.emoji}>👉</span>
+          {
+            location.pathname !== '/create' &&
+              <div className={style.itemCreate}>
+                <span className={style.emoji}>👉</span>
+                <NavLink to="/create">create your own recipe here!</NavLink>
+              </div>
+          }
         </ul>
       </div>
     </nav>

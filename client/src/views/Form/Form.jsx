@@ -14,16 +14,15 @@ function Form({ postRecipe }) {
   const dietTypes = useSelector((state) => state.diets);
 
   const validate = (form, fileName, steps) => {
-    console.log(fileName);
-    console.log(form.image);
+
     const errors = {};
 
     if (form.name.length === 0) {
       errors.name = "Name is required";
     }
 
-    if (form.name.length > 20) {
-      errors.name = "Name must be less than 20 characters";
+    if (form.name.length > 60) {
+      errors.name = "Name must be less than 60 characters";
     }
 
     if (form.summary.length === 0) {
@@ -85,6 +84,8 @@ function Form({ postRecipe }) {
     if (currentStep) {
       setSteps([...steps, currentStep]);
       setCurrentStep("");
+      const stepsErors = validate(form, fileName,currentStep);
+      setErrors((prevErrors) => ({ ...prevErrors, steps: stepsErors.steps  }));
     }
   };
 
@@ -238,7 +239,13 @@ function Form({ postRecipe }) {
           onChange={handleChange}
           name="name"
         />
-        {errors.name && <p className={style.warning}>{errors.name}</p>}
+      {
+        errors.name && 
+          <div className={style.errorMessage}>
+            <div className={style.arrowUp}></div>
+            <p className={style.warning}>{errors.name}</p>
+          </div>
+      }
       </div>
 
       {/*---------------- RESUMEN DEL PLATO -----------------------*/}
@@ -252,7 +259,12 @@ function Form({ postRecipe }) {
           onChange={handleChange}
           name="summary"
         />
-        {errors.summary && <p className={style.warning} >{errors.summary}</p>}
+        {errors.summary &&
+          <div className={style.errorMessage}>
+            <div className={style.arrowUp}></div>
+            <p className={style.warning}>{errors.summary}</p>
+          </div>
+        }
       </div>
 
       {/*-------------- PUNTAJE DE SALUD -------------------------*/}
@@ -270,7 +282,12 @@ function Form({ postRecipe }) {
           onChange={handleChange}
           name="healthScore"
         />
-        {errors.healthScore && <p className={style.warning}>{errors.healthScore}</p>}
+        {errors.healthScore &&
+          <div className={style.errorMessage}>
+            <div className={style.arrowUp}></div>
+            <p className={style.warning}>{errors.healthScore}</p>
+          </div>
+        }
       </div>
 
       {/* ------------ PASO A PASO ---------------------------*/}
@@ -305,7 +322,12 @@ function Form({ postRecipe }) {
               );
             })}
         </ul>
-        {errors.steps && <p className={style.warning}>{errors.steps}</p>}
+        {errors.steps &&
+          <div className={style.errorMessageSteps}>
+            <div className={style.arrowUp}></div>
+            <p className={style.warning}>{errors.steps}</p>
+          </div>
+        }
       </section>
 
       {/* ------------------ IMAGEN -----------------*/}
@@ -346,7 +368,12 @@ function Form({ postRecipe }) {
           )}
         </span>
 
-        {errors.image && <p className={style.warning}>{errors.image}</p>}
+        {errors.image &&
+          <div className={style.errorMessageImage}>
+            <div className={style.arrowUp}></div>
+            <p className={style.warning}>{errors.image}</p>
+          </div>
+        }
       </section>
 
       {/*---------------- DIET TYPES ----------------------*/}

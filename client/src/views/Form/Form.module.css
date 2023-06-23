@@ -41,6 +41,7 @@
     text-shadow: 1px 1px 5px var(--text-dark-);
 }
 .inputContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,6 +111,7 @@
 
 /* PASO A PASO */
 .stepsContainer {
+    position: relative;
     min-height: 133px;
     width: 33rem;
     margin: 15px 0;
@@ -194,6 +196,7 @@
 }
 
 .fileNameContainer {
+    position: relative;
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
@@ -204,7 +207,6 @@
     min-width: 33rem;
     max-width: 500px;
     word-wrap: break-word;
-    overflow: hidden;
 }
 .fileIcon {
     width: 20px;
@@ -263,4 +265,68 @@
 .submitButton:hover {
     background-color: var(--button-hover);
     color: var(--text-light);
+}
+
+
+/* ERROR MESSAGE */
+
+.errorMessage {
+    position: absolute;
+    background-color: #ffdddd;
+    color: #ff0000;
+    padding: 10px;
+    border: 1px solid #ff0000;
+    border-radius: 4px;
+    bottom: -30px;
+}
+
+.errorMessageSteps {
+    position: absolute;
+    background-color: #ffdddd;
+    color: #ff0000;
+    padding: 10px;
+    border: 1px solid #ff0000;
+    border-radius: 4px;
+    bottom: -38px;
+}
+
+.errorMessageImage {
+    position: absolute;
+    background-color: #ffdddd;
+    color: #ff0000;
+    padding: 10px;
+    border: 1px solid #ff0000;
+    border-radius: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -38px;
+    z-index: 2;
+}
+.errorMessage .arrowUp {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ffdddd;
+}
+.errorMessageSteps .arrowUp {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ffdddd;
+}
+
+.errorMessageImage .arrowUp {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ffdddd;
 }
