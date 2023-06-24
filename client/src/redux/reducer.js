@@ -11,7 +11,7 @@ import {
   ADD_NEW_RECIPE
 } from "./action-creators/types";
 
-import { recipes, dietTypes } from "../utils/data";
+// import { recipes, dietTypes } from "../utils/data";
 
 const initialState = {
   allRecipes: [],

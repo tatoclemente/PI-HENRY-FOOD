@@ -7,7 +7,9 @@
     height: 100vh;
     background-image: url("../../images/landing-background.jpg");
     background-size: cover;
+    background-position: center;
     position: relative;
+    overflow: hidden;
 }
 
 .landingTitle {
@@ -16,6 +18,26 @@
     margin-bottom: 20px;
     color: var(--main-color);
     text-shadow: 1px 1px 5px black;
+    animation: title 1.5s linear;
+}
+@keyframes title {
+    0% {
+        opacity: 0;
+        transform: translateY(-180%);
+      }
+      25% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-30%);
+      }
+      75% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-15%);
+      }
 }
 
 .landingLink {
@@ -38,4 +60,37 @@
 
 .landingButton:hover {
     background-color: var(--main-color);
+}
+
+.friedEgg {
+    position: absolute;
+    width: 200px;
+    bottom: 25px;
+    animation: egg 3s linear;
+}
+
+@keyframes egg {
+    0% {
+        opacity: 0;
+    }
+    65% {
+        opacity: 0;
+        transform: scale(1.5)
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1);
+        transform: translateX(10px);
+        transform: translateY(10px);
+    }
+    80% {
+        opacity: 1;
+        transform: translateX(-10px);
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        transform: translateY(0);
+    }
 }

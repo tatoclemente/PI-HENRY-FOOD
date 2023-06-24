@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import ROUTE from './helpers/routes.helpers';
 import axios from 'axios';
-import Spinner from './components/Spinner/Spinner';
+import NotFound from './components/404NotFound/NotFound';
 // import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
@@ -68,6 +68,8 @@ function App() {
         showSpinner={showSpinner} /> } />
 
         <Route path={`${ROUTE.DETAIL}/:detailId`} render={ () => <Detail /> } />
+
+        <Route path={ROUTE.NOT_FOUND} render={ () => <NotFound />} />
 
     </div>
   );

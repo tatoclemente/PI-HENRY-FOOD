@@ -4,6 +4,7 @@ import style from "./CardsContainer.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { clearRecicesSearch } from "../../redux/action-creators/actions";
 import FilteredOptions from "../FilteredOptions/FilteredOptions";
+import { scrollToTop } from "../../Functions/functions";
 
 function CardsContainer() {
   const allRecipes = useSelector((state) => state.allRecipes);
@@ -28,7 +29,7 @@ function CardsContainer() {
   const handlePageChange = (pageNumber) => {
     if (pageNumber >= 0 && pageNumber < totalPages) {
       setCurrentPage(pageNumber);
-      window.scrollTo(0, 200);
+      setTimeout(scrollToTop, 100);// Llamo a scrollToTop después de 100 milisegundos
     }
   }
 
@@ -131,6 +132,11 @@ function CardsContainer() {
                 />
               ))}
           </div>
+          <FilteredOptions 
+              title='See All Searches'
+              currentPage={currentPage} 
+              totalPages={totalPages}
+              handlePageChange={handlePageChange}/>
         </div>
       )}
     </div>

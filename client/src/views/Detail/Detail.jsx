@@ -4,15 +4,18 @@ import { useParams } from 'react-router-dom';
 import style from './Detail.module.css'
 import DetailInfo from '../../components/DetailInfo/DetailInfo';
 import Spinner from '../../components/Spinner/Spinner'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import ROUTE from '../../helpers/routes.helpers';
 
 function Detail() {
   const [recipe, setRecipe ] = useState({});
   const {detailId} = useParams();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   
+  const history = useHistory()
   
   useEffect(() => {
-    setLoading(true)
+    let isMounted = true;
     const fetchData = async () => {
       try {
         const {data} = await axios.get(`/recipes/${detailId}`)
@@ -22,11 +25,19 @@ function Detail() {
         window.scrollTo(0, 0);
         setLoading(false)
       } catch (error) {
-        throw Error({error: error.message})
+        if(isMounted){
+          history.push(ROUTE.NOT_FOUND)
+          setLoading(false)
+          console.log(error);
+        }
       }
     }
     fetchData()
-  }, [detailId])
+
+    return () => {
+      isMounted = false; // Establecer la variable de control en false al desmontar el componente
+    };
+  }, [detailId, history])
 
 
   
@@ -34,7 +45,10 @@ function Detail() {
   return (
     <div className={style.detailContainer}>
       {loading
-      ? <Spinner />
+      ? <div className={style.spinnerContainer}>
+          <p>Please Wait...</p>
+          <Spinner />; 
+        </div> 
       : <DetailInfo recipe={recipe}/>
       }
     </div>

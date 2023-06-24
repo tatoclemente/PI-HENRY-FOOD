@@ -4,6 +4,7 @@ import style from "./NavBar.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import Logo from "../../images/gorrito-logo.png";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import ROUTE from "../../helpers/routes.helpers";
 
 function NavBar(props) {
   const location = useLocation()
@@ -27,11 +28,12 @@ function NavBar(props) {
             </li>
           </div>
           {
-            location.pathname !== '/create' &&
-              <div className={style.itemCreate}>
-                <span className={style.emoji}>👉</span>
-                <NavLink to="/create">create your own recipe here!</NavLink>
-              </div>
+            location.pathname === ROUTE.HOME
+            ? <div className={style.itemCreate}>
+                 <span className={style.emoji}>👉</span>
+                 <NavLink to="/create">create your own recipe here!</NavLink>
+               </div>
+            : ""
           }
         </ul>
       </div>
