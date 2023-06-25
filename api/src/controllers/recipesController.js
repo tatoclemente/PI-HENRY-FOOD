@@ -30,6 +30,7 @@ const getRecipeById = async (id, source) => {
       healthScore: recipeDB.healthScore,
       steps: recipeDB.steps,
       diets: diets,
+      created: recipeDB.created
     };
 
     return recipe;
