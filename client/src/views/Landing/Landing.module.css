@@ -19,6 +19,7 @@
     color: var(--main-color);
     text-shadow: 1px 1px 5px black;
     animation: title 1.5s linear;
+    transition: .5s ease-in-out;
 }
 @keyframes title {
     0% {
@@ -36,7 +37,7 @@
         transform: translateY(0);
       }
       100% {
-        transform: translateY(-15%);
+        transform: translateY(-10%);
       }
 }
 

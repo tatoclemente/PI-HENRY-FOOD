@@ -8,8 +8,6 @@ import { useDispatch } from 'react-redux';
 import ROUTE from './helpers/routes.helpers';
 import axios from 'axios';
 import NotFound from './components/404NotFound/NotFound';
-// import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-
 
 
 function App() {

@@ -35,9 +35,9 @@
     align-items: center;
 }
 .menu {
+    margin-top: 20px;
     width: 250px;
     display: flex;
-
     align-items: center;
     list-style: none;
     font-weight: 600;
@@ -68,15 +68,21 @@
 }
 
 .itemCreate {
-    margin-top: 10px;
+    margin-top: 15px;
 }
+
 .itemCreate a{
     color: var(--text-light);
     border-bottom: 1px solid var(--text-light);
     text-decoration: none;
     text-transform: capitalize;
+    transition: .4s ease-in-out;
 }
-
+.itemCreate a:hover{
+    color: var(--main-color);
+    transform: scale(1.4);
+    border-bottom: 1px solid var(--main-color);
+}
 .emoji {
     text-shadow: -1px -1px 8px rgb(0, 0, 0);
     font-size: 1.5rem;

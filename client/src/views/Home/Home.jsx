@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../components/Spinner/Spinner";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ROUTE from "../../helpers/routes.helpers";
+// import { PaginationPrivider } from "./pagination";
 
 function Home({ isSearchPerformed }) {
   const recipeDataDiets = useSelector(state => state.diets)

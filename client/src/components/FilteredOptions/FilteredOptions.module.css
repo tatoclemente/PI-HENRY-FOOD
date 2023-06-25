@@ -54,6 +54,7 @@
     border-radius: 5px;
     padding:2px 5px;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 /* .optionsContainer select option {

@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import Card from "../Cards/Card";
 import style from "./CardsContainer.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { clearRecicesSearch } from "../../redux/action-creators/actions";
+import { clearRecicesSearch, setCurrentPage } from "../../redux/action-creators/actions";
 import FilteredOptions from "../FilteredOptions/FilteredOptions";
 import { scrollToTop } from "../../Functions/functions";
+// import { PaginationContext } from "../../views/Home/pagination";
 
 function CardsContainer() {
   const allRecipes = useSelector((state) => state.allRecipes);
   const recipesByName = useSelector((state) => state.recipesByName);
+  const currentPage = useSelector((state) => state.currentPage);
   
   const filteredRecipes = useSelector((state) => state.filteredRecipes);
   const hasFilteredRecipes = filteredRecipes.length > 0
@@ -16,7 +18,8 @@ function CardsContainer() {
 
   const dispatch = useDispatch()
 
-  const [currentPage, setCurrentPage ] = useState(0)
+  // const [currentPage, setCurrentPage ] = useState(0)
+
   const perPage = 9
 
   const startIdx = currentPage * perPage
@@ -28,7 +31,7 @@ function CardsContainer() {
 
   const handlePageChange = (pageNumber) => {
     if (pageNumber >= 0 && pageNumber < totalPages) {
-      setCurrentPage(pageNumber);
+      dispatch(setCurrentPage(pageNumber))
       setTimeout(scrollToTop, 100);// Llamo a scrollToTop después de 100 milisegundos
     }
   }

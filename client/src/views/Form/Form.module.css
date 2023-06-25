@@ -103,10 +103,12 @@
 .textarea {
     margin: 10px 0;
     width: 25rem;
-    height: 6rem;
+    min-height: 6rem;
+    max-height: 12rem;
     border-radius: 3px;
     padding: 10px;
-
+    font-family: 'roboto', sans-serif;
+    resize: vertical;
 }
 
 /* PASO A PASO */
@@ -348,4 +350,13 @@
     border-radius: 15px;
     margin-bottom: 15px;
     font-size: 1.2rem;
+}
+
+.docCharacters {
+    position: absolute;
+    bottom: 5px;
+    right: 65px;
+    font-size: .9rem;
+    opacity: .6;
+    pointer-events: none;
 }

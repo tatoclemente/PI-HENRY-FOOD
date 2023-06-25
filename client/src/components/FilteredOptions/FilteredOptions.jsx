@@ -6,6 +6,7 @@ import {
   filterByOrigin,
   orderByName,
   orderByScore,
+  setCurrentPage,
 } from "../../redux/action-creators/actions";
 import style from "./FilteredOptions.module.css";
 import { scrollToTop } from "../../Functions/functions";
@@ -73,7 +74,7 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
   };
 
   const handleFilterChange = () => {
-    handlePageChange(0); // Establecer currentPage en 0
+    dispatch(setCurrentPage(0)) // Establecer currentPage en 0
   };
   return (
     <div className={style.mainOptionsContainer}>
@@ -131,7 +132,7 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
         <button className={style.navigationButton} disabled={currentPage === 0} onClick={() => handlePageChange(currentPage - 1)}>
           Previous
         </button>
-        <span style={{color:"#fff"}}>{`Page ${currentPage + 1} ${
+        <span style={{color:"#fff", userSelect:"none"}}>{`Page ${currentPage + 1} ${
           totalPages === 1 ? "of 1" : `of ${totalPages}`
         }`}</span>
         <button className={style.navigationButton} disabled={currentPage === totalPages - 1} onClick={() => handlePageChange(currentPage + 1)}>

@@ -30,6 +30,9 @@ function Form({ postRecipe, showSpinner }) {
     if (form.summary.length === 0) {
       errors.summary = "Summary is required";
     }
+    if (form.summary.length > 500) {
+      errors.summary = "It has a maximum of 500 characters"    }
+    
 
     if (fileName === "No selected image") {
       errors.image = "Image is required";
@@ -38,7 +41,7 @@ function Form({ postRecipe, showSpinner }) {
     if (form.healthScore < 1) {
       errors.healthScore = "Health score must be between 1 and 100";
     }
-    
+  
     if(steps && steps.length === 0){
       errors.steps = "Steps are required";
     }
@@ -70,11 +73,29 @@ function Form({ postRecipe, showSpinner }) {
   const handleChange = (event) => {
     const { name, value } = event.target;
     const updatedForm = { ...form, [name]: value };
+    if (value.length <= maxCaracteres) {
+      setForm({
+        ...form,
+        summary:value
+      });
+    if (value.length <= 60) {
+      setForm({
+        ...form,
+        name: value
+      })
+    }
     setForm(updatedForm);
+    }
 
     const fieldErrors = validate({ ...form, [name]: value }, fileName, steps);
     setErrors((prevErrors) => ({ ...prevErrors, [name]: fieldErrors[name] }));
   };
+
+  //------------------------------------------------------------------------------------
+  /// SUMMARY LIMIT
+  const varCharacters = form.summary.length
+  const maxCaracteres = 500;
+
   //-----------------------------------------------------------------------------------
   /// STEPS HANDLERS
 
@@ -280,6 +301,7 @@ function Form({ postRecipe, showSpinner }) {
             <p className={style.warning}>{errors.summary}</p>
           </div>
         }
+        <span className={style.docCharacters}>{`${varCharacters}/${maxCaracteres}`}</span>
       </div>
 
       {/*-------------- PUNTAJE DE SALUD -------------------------*/}

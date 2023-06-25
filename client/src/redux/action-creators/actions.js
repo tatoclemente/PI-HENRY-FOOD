@@ -9,7 +9,8 @@ import {
   ORDER_BY_NAME,
   ORDER_BY_SCORE,
   FILTER_BY_ORIGIN,
-  ADD_NEW_RECIPE
+  ADD_NEW_RECIPE,
+  CURRENT_PAGE,
 } from "./types";
 
 export const getAllRecipes = () => {
@@ -103,4 +104,11 @@ export const orderByName = (value) => {
     payload: value,
   };
 
+}
+
+export const setCurrentPage = (pageNumber) => {
+  return {
+    type: CURRENT_PAGE,
+    payload:pageNumber
+  }
 }

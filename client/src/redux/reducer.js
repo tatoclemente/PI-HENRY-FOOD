@@ -8,7 +8,8 @@ import {
   ORDER_BY_NAME,
   ORDER_BY_SCORE,
   CLEAR_RECIPE_FILTERED,
-  ADD_NEW_RECIPE
+  ADD_NEW_RECIPE,
+  CURRENT_PAGE,
 } from "./action-creators/types";
 
 // import { recipes, dietTypes } from "../utils/data";
@@ -21,6 +22,7 @@ const initialState = {
   recipesByName: [],
 
   filteredRecipes: [],
+  currentPage: 0,
 
 };
 
@@ -121,6 +123,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
         }
         )
         return { ...state, filteredRecipes: sortedByScore };
+
+        // Current Page
+        case CURRENT_PAGE:
+          return {
+            ...state,
+            currentPage: payload
+          }
     default:
       return { ...state };
   }
