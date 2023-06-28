@@ -5,11 +5,6 @@ const uploadImage = require('../config/cloudinary');
 const fs = require('fs');
 const path = require("path");
 
-// const multer = require("multer");
-
-// const storage = multer.memoryStorage();
-// const uppload = multer({ storage }).single("image");
-
 const recipesByIdHandler = async (req, res) => {
   // Esta ruta obtiene el detalle de una receta específica. Es decir que devuelve un objeto con la información pedida en el detalle de una receta.
   // Debe incluir los datos de tipo de dieta
@@ -55,9 +50,6 @@ const createRecipeHandler = async (req, res) => {
 
   // extaigo las propiedades que necesito para crear la receta
 
-  // uppload(req, res, function (err) {
-  //   if (err) return res.status(500).json({ err: err.message })
-  // })
   const { name, summary, healthScore, steps, diets } = req.body;
 
   try {
@@ -99,6 +91,7 @@ const createRecipeHandler = async (req, res) => {
       const newRecipe = await createRecipe(recipe);
       res.status(201).json(newRecipe);
   } catch (error) {
+    console.log(error.message);
     res.status(404).json({ error: error.message });
   }
 }
