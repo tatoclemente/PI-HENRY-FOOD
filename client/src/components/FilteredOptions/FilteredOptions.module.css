@@ -1,27 +1,11 @@
 .mainOptionsContainer {
-
+    position: relative;
     width: 80%;
-    padding-top:10px;
-    padding-bottom: 0;
+    padding: 10px 0;
     background-color: var(--text-dark-);
     border-radius: 5px;
     border: 1px solid var(--main-color);
-}
 
-.pageNavigation {
-    display: flex;
-    justify-content: space-around;
-    justify-items: center;
-    margin-top: 15px !important;
-    margin: 0 auto;
-    width: 60%;
-
-}
-
-.navigationButton {
-    width: 170px !important;
-    height: 2rem !important;
-    
 }
 
 .mainOptionsContainer button {
@@ -35,6 +19,7 @@
     border: none;
     cursor: pointer;
     transition: .4s ease-in-out;
+    box-shadow: 1px 1px 5px black;
 }
 
 .mainOptionsContainer button:hover{
@@ -57,10 +42,6 @@
     cursor: pointer;
 }
 
-/* .optionsContainer select option {
-    background-color: var(--text-dark-);
-    color: var(--text-light);
-} */
 .optionsContainer > select > option {
     font-weight: 700;
 }
@@ -68,4 +49,20 @@
 .disabled-option {
     color: gray;
     pointer-events: none;
-  }
+}
+
+.filtersContainer {
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+}
+
+.filterTag {
+    background-color: rgba(255, 255, 255, 0.676);
+    color: black;
+    font-style: italic;
+    padding: 0 5px 3px 5px;
+    border-radius: 5px;
+    margin-right: .5rem;
+    text-transform: capitalize;
+}

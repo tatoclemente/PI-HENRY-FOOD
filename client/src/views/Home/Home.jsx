@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ROUTE from "../../helpers/routes.helpers";
 // import { PaginationPrivider } from "./pagination";
 
-function Home({ isSearchPerformed }) {
+function Home({ isSearchPerformed, showSpinner }) {
   const recipeDataDiets = useSelector(state => state.diets)
   const recipeDataAll = useSelector(state => state.allRecipes)
   const dispatch = useDispatch();
@@ -38,12 +38,18 @@ function Home({ isSearchPerformed }) {
 
   return (
     <div className={style.mainContainer}>
-       {loading
-      ? <div className={style.spinnerContainer}>
-          <p>Please Wait...</p>
-          <Spinner />; 
-        </div> 
-      : <CardsContainer />
+      {loading || showSpinner
+        ? (
+          <div className={style.spinnerContainer}>
+            <p>Please Wait...</p>
+            <Spinner />; 
+          </div> 
+        ) : recipeDataAll.length === 0 && !isSearchPerformed ?
+        (
+          <p>No se encontraron recetas.</p>
+        ) : (
+          <CardsContainer />
+        )
       }
       
     </div>

@@ -10,44 +10,12 @@ import TrashWhite from "../../images/trash-white.png";
 import TrashRed from "../../images/trash-red.png";
 import DeleteIcon from "../../images/remove-icon.png";
 
+import { validate } from '../../Functions/functions'
 import Spinner from "../../components/Spinner/Spinner";
+
 
 function Form({ postRecipe, showSpinner }) {
   const dietTypes = useSelector((state) => state.diets);
-
-  const validate = (form, fileName, steps) => {
-
-    const errors = {};
-
-    if (form.name.length === 0) {
-      errors.name = "Name is required";
-    }
-
-    if (form.name.length > 60) {
-      errors.name = "Name must be less than 60 characters";
-    }
-
-    if (form.summary.length === 0) {
-      errors.summary = "Summary is required";
-    }
-    if (form.summary.length > 500) {
-      errors.summary = "It has a maximum of 500 characters"    }
-    
-
-    if (fileName === "No selected image") {
-      errors.image = "Image is required";
-    } 
-    
-    if (form.healthScore < 1) {
-      errors.healthScore = "Health score must be between 1 and 100";
-    }
-  
-    if(steps && steps.length === 0){
-      errors.steps = "Steps are required";
-    }
-
-    return errors;
-  };
 
   //-----------------------------------------------------------------------------------
   // ERROS HANDLERS
@@ -70,6 +38,12 @@ function Form({ postRecipe, showSpinner }) {
     image: null,
   });
 
+  const [steps, setSteps] = useState([]);
+  const [currentStep, setCurrentStep] = useState("");
+
+  
+  const [selectedDiets, setSelectedDiets] = useState([]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     const updatedForm = { ...form, [name]: value };
@@ -87,8 +61,8 @@ function Form({ postRecipe, showSpinner }) {
     setForm(updatedForm);
     }
 
-    const fieldErrors = validate({ ...form, [name]: value }, fileName, steps);
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: fieldErrors[name] }));
+    const fieldErrors = validate({ ...form, [name]: value }, fileName, currentStep);
+    setErrors({ ...errors, [name]: fieldErrors[name] });
   };
 
   //------------------------------------------------------------------------------------
@@ -99,16 +73,15 @@ function Form({ postRecipe, showSpinner }) {
   //-----------------------------------------------------------------------------------
   /// STEPS HANDLERS
 
-  const [steps, setSteps] = useState([]);
-  const [currentStep, setCurrentStep] = useState("");
+
 
   const handleAddStep = (event) => {
     event.preventDefault();
     if (currentStep) {
       setSteps([...steps, currentStep]);
       setCurrentStep("");
-      const stepsErors = validate(form, fileName,currentStep);
-      setErrors((prevErrors) => ({ ...prevErrors, steps: stepsErors.steps  }));
+      const stepsErors = validate(form, fileName, currentStep);
+      setErrors({ ...errors, steps: stepsErors.steps  });
     }
   };
 
@@ -117,7 +90,7 @@ function Form({ postRecipe, showSpinner }) {
     newStep.splice(index, 1);
     setSteps(newStep);
     const stepsErors = validate(form, fileName,newStep);
-    setErrors((prevErrors) => ({ ...prevErrors, steps: stepsErors.steps  }));
+    setErrors({ ...errors, steps: stepsErors.steps  });
   
   };
 
@@ -128,7 +101,6 @@ function Form({ postRecipe, showSpinner }) {
   //-----------------------------------------------------------------------------------
   /// DIET TYPES HANDLERS
 
-  const [selectedDiest, setSelectedDiets] = useState([]);
 
   // const [diets, setDiets] = useState([])
 
@@ -145,12 +117,16 @@ function Form({ postRecipe, showSpinner }) {
 
   //-----------------------------------------------------------------------------------
 
+
+    
+  // IMAGE HANDLERS
+
   const validateFileSize = (file) => {
     const maxSize = 1 * 1024 * 1024; // 1MB
     if (file.size > maxSize) return false;
     return true;
   };
-  // IMAGE HANDLERS
+
 
   const [imageFile, setImageFile] = useState(null);
   const [fileName, setFilename] = useState("No selected image");
@@ -165,7 +141,7 @@ function Form({ postRecipe, showSpinner }) {
         setFilename(files[0].name);
         setImageFile(URL.createObjectURL(files[0]));
 
-        const imageErrors = validate(form, selectedFile.name, steps);
+        const imageErrors = validate(form, selectedFile.name, currentStep);
         setErrors((prevErrors) => ({ ...prevErrors, image: imageErrors.image }));
 
       } else {
@@ -190,7 +166,7 @@ function Form({ postRecipe, showSpinner }) {
     setImageFile(null);
     setForm({ ...form, image: null });
 
-    const imageErrors = validate({ ...form, image: null }, "No selected image", steps);
+    const imageErrors = validate({ ...form, image: null }, "No selected image", currentStep);
     setErrors((prevErrors) => ({ ...prevErrors, image: imageErrors.image }));
   };
 
@@ -204,13 +180,13 @@ function Form({ postRecipe, showSpinner }) {
     formData.append("healthScore", form.healthScore);
     formData.append("image", form.image);
     formData.append("steps", JSON.stringify(steps));
-    formData.append("diets", JSON.stringify(selectedDiest));
+    formData.append("diets", JSON.stringify(selectedDiets));
 
     const errors = validate(form, fileName, steps);
     setErrors(errors);
 
     if (Object.values(errors).length === 0) {
-      if (selectedDiest.length === 0 && !confirmNoDietSelected()) {
+      if (selectedDiets.length === 0 && !confirmNoDietSelected()) {
         return; // Detener el envío del formulario si el usuario cancela
       }
         
@@ -274,6 +250,7 @@ function Form({ postRecipe, showSpinner }) {
           placeholder="Enter the name of your recipe..."
           onChange={handleChange}
           name="name"
+          autoComplete="off"
         />
       {
         errors.name && 
@@ -294,6 +271,7 @@ function Form({ postRecipe, showSpinner }) {
           placeholder="Describe the dish, for example: most important ingredients, its origin or brief history..."
           onChange={handleChange}
           name="summary"
+          autoComplete="off"
         />
         {errors.summary &&
           <div className={style.errorMessage}>
@@ -424,7 +402,7 @@ function Form({ postRecipe, showSpinner }) {
                   type="checkbox"
                   value={diet}
                   name="diets"
-                  checked={selectedDiest.includes(diet)}
+                  checked={selectedDiets.includes(diet)}
                   className={style.dietsCheckbox}
                   onChange={handleCheckboxChange}
                 />

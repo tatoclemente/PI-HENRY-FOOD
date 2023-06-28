@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearReacipeFiltered,
@@ -11,8 +11,9 @@ import {
 import style from "./FilteredOptions.module.css";
 import { scrollToTop } from "../../Functions/functions";
 
-function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
+function FilteredOptions({ title }) {
   const diets = useSelector((state) => state.diets);
+  const filteredRecipes = useSelector(state => state.filteredRecipes)
   const dispatch = useDispatch();
 
   const [filterOptions, setFilterOptions] = useState({
@@ -22,25 +23,42 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
     selectedOrderByHealth: ""
   });
 
+  const [selectedDietsFilter, setSelectedDietsFilter] = useState([]);
+
+  useEffect(() => {
+    const dietsArr = filteredRecipes.map((recipe) => recipe.diets).flat();
+    const uniqueDiets = [...new Set(dietsArr)];
+
+    if(filterOptions.selectedDiet && !selectedDietsFilter.includes(filterOptions.selectedDiet) && uniqueDiets.includes(filterOptions.selectedDiet)) {
+      setSelectedDietsFilter((prevSelectedDiets) => (
+        [...prevSelectedDiets, filterOptions.selectedDiet]
+      ))
+    }
+  }, [filteredRecipes, filterOptions.selectedDiet])
+
   const handleFilterByDiet = (event) => {
-    dispatch(filterByDiet(event.target.value));
+    const {value} = event.target
+
+    dispatch(filterByDiet(value));
     setFilterOptions((prevState) => ({
       ...prevState,
-      selectedDiet: event.target.value
+      selectedDiet: value
     }));
+
     handleFilterChange()
     setTimeout(scrollToTop, 100);// Llamo a scrollToTop después de 100 milisegundos
-  };
+  };                            // para esperar que el estado se actualice correctamente
 
   const handleFilterByOrigin = (event) => {
-    dispatch(filterByOrigin(event.target.value));
+    const {value} = event.target;
+    dispatch(filterByOrigin(value));
     setFilterOptions((prevState) => ({
       ...prevState,
-      selectedOrigin: event.target.value
+      selectedOrigin: value
     }));
     handleFilterChange()
     setTimeout(scrollToTop, 100);// Llamo a scrollToTop después de 100 milisegundos
-  };
+  };                            // para esperar que el estado se actualice correctamente
 
   const handleClearClick = () => {
     dispatch(clearReacipeFiltered());
@@ -50,32 +68,37 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
       selectedOrderByName: "",
       selectedOrderByHealth: ""
     })
+    setSelectedDietsFilter([])
     handleFilterChange()
     setTimeout(scrollToTop, 100);// Llamo a scrollToTop después de 100 milisegundos
-  };
+  };                             // para esperar que el estado se actualice correctamente
   const handleOrderByName = (event) => {
-    dispatch(orderByName(event.target.value));
+    const {value} = event.target;
+    dispatch(orderByName(value));
     setFilterOptions((prevState) => ({
       ...prevState,
-      selectedOrderByName: event.target.value
+      selectedOrderByName: value
     }));
     handleFilterChange()
     setTimeout(scrollToTop, 100);// Llamo a scrollToTop después de 100 milisegundos
-  };
+  };                            // para esperar que el estado se actualice correctamente
 
   const handleOrderByScore = (event) => {
-    dispatch(orderByScore(event.target.value));
+    const {value} = event.target;
+    dispatch(orderByScore(value));
     setFilterOptions((prevState) => ({
       ...prevState,
-      selectedOrderByHealth: event.target.value
+      selectedOrderByHealth: value
     }));
     handleFilterChange()
     setTimeout(scrollToTop, 100);// Llamo a scrollToTop después de 100 milisegundos
   };
 
   const handleFilterChange = () => {
-    dispatch(setCurrentPage(0)) // Establecer currentPage en 0
+    dispatch(setCurrentPage(0)) // Establezco currentPage en 0 para volver a la pagina 1
   };
+
+
   return (
     <div className={style.mainOptionsContainer}>
       <button onClick={handleClearClick}>{title}</button>
@@ -128,17 +151,15 @@ function FilteredOptions({ title, currentPage, totalPages, handlePageChange }) {
           <option value="less">Less Healthy</option>
         </select>
       </div>
-      <div className={style.pageNavigation}>
-        <button className={style.navigationButton} disabled={currentPage === 0} onClick={() => handlePageChange(currentPage - 1)}>
-          Previous
-        </button>
-        <span style={{color:"#fff", userSelect:"none"}}>{`Page ${currentPage + 1} ${
-          totalPages === 1 ? "of 1" : `of ${totalPages}`
-        }`}</span>
-        <button className={style.navigationButton} disabled={currentPage === totalPages - 1} onClick={() => handlePageChange(currentPage + 1)}>
-          Next
-        </button>
+
+      <div className={style.filtersContainer}>
+      { selectedDietsFilter &&
+        selectedDietsFilter?.map((filterDiet, index) => (
+          <span key={index} className={style.filterTag}>{filterDiet}</span>
+        ))
+      }
       </div>
+  
     </div>
   );
 }

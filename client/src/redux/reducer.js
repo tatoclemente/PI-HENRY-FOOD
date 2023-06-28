@@ -58,17 +58,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, filteredRecipes: payload };
 
     case FILTER_BY_DIET:
-      // const recipesToFilter = state.recipesByName.length > 0
-      // ? state.recipesByName
-      // : state.allRecipes;
-
       const filterByDiet = recipesToSort.filter((recipe) =>
         recipe.diets?.includes(payload)
       );
       if (filterByDiet.length === 0)
+       return( 
         window.alert(
           "There are no recipes with that type of diet, try again with another option"
-        );
+        ),
+        {...state, filteredRecipes: state.filteredRecipes }
+      )
 
       return { ...state, filteredRecipes: filterByDiet };
 
@@ -82,7 +81,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
           (recipe) => recipe.created === true
         );
         if (filterByOrigin.length === 0){
-          window.alert("No recipes created by you, try again with another option");
+          return (
+            window.alert(
+              "No recipes created by you, try again with another option"
+            ),
+            {...state, filteredRecipes: state.filteredRecipes }
+            );
         } 
         return { ...state, filteredRecipes: filterByOrigin };
       } else {
@@ -90,7 +94,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
           (recipe) => recipe.created === undefined
         );
         if (filterByOriginApi.length === 0){
-          window.alert("There are no recipes with that name in the API");
+          return (
+            window.alert("There are no recipes with that name in the API"
+            ),
+            {...state, filteredRecipes: state.filteredRecipes }
+            );
         } 
         return { ...state, filteredRecipes: filterByOriginApi };
       }

@@ -5,11 +5,12 @@ import React, { useState, useEffect } from "react";
 import Glass from '../../images/searching.png';
 
 import style from "./SearchBar.module.css";
-import { clearReacipeFiltered } from '../../redux/action-creators/actions';
+import { clearReacipeFiltered, setCurrentPage } from '../../redux/action-creators/actions';
 
 function SearchBar({ onSearch }) {
 
   const globalStateRecipes = useSelector((state) => state.allRecipes);
+
   const dispatch = useDispatch()
 
   const [name, setName] = useState("");
@@ -46,6 +47,7 @@ function SearchBar({ onSearch }) {
       const query = name
       setName("")
       setNameOptions([])
+      handleFilterChange()
       onSearch(query)
       dispatch(clearReacipeFiltered())
   }
@@ -54,9 +56,15 @@ function SearchBar({ onSearch }) {
     if(nameOption) {
       setName("")
       setNameOptions([])
+      handleFilterChange()
       onSearch(nameOption)
+     
     }
   }
+
+  const handleFilterChange = () => {
+    dispatch(setCurrentPage(0)) // Establezco currentPage en 0 para volver a la pagina 1
+  };
 
   return (
     <div className={style.searchBarContainer}>

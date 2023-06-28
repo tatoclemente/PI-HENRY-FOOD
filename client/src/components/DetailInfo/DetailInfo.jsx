@@ -5,22 +5,27 @@ import notAvailableImage from '../../images/not-available-image.jpg';
 
 function DetailInfo({recipe}) {
 
-  const parseHTMLString = (htmlString) => {
-  const tempElement = document.createElement('div');
-  tempElement.innerHTML = htmlString;
-  return tempElement.textContent || tempElement.innerText;
-  }
+  // const parseHTMLString = (htmlString) => {
+  // const tempElement = document.createElement('div');
+  // tempElement.innerHTML = htmlString;
+  // return tempElement.textContent || tempElement.innerText;
+  // }
 
-  const htmlString = recipe.summary;
+  // const htmlString = recipe.summary;
 
-  const parsedSummary = parseHTMLString(htmlString);
+  // const parsedSummary = parseHTMLString(htmlString);
 
 
   return (
     <div className={style.detailContainer}>
       <p className={style.id}>{`ID: ${recipe?.id}`}</p>
       <h1 className={style.name}>{recipe.name}</h1>
-      <p className={style.summary}>{parsedSummary}</p>
+      <p className={style.summary}>
+        <span dangerouslySetInnerHTML={{ __html: recipe.summary.replace(
+          /<a\b([^>]*)>/gi,
+          '<a $1 target="_blank">'
+        ), }} />
+      </p>
       <div className={style.imageContainer}>
         <img 
           src={recipe?.image} 

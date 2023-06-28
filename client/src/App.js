@@ -8,29 +8,43 @@ import { useDispatch } from 'react-redux';
 import ROUTE from './helpers/routes.helpers';
 import axios from 'axios';
 import NotFound from './components/404NotFound/NotFound';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function App() {
   const dispatch = useDispatch()
   const [isSearchPerformed, setIsSearchPerformed] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
+
+  const history = useHistory()
   const onSearch = (name) => {
     if (!name) {
       window.alert("Ups, lo siento, debe ingresar un nombre de receta")
       return
-  } 
-    dispatch(clearRecicesSearch())
+    } 
+    
+    setShowSpinner(true)
+
+    dispatch(clearRecicesSearch());
     dispatch(getRecipesByName(name))
+    .then(() => {
+      setShowSpinner(false); // Ocultar el spinner cuando se complete la búsqueda
+    })
+    .catch((error) =>{
+      console.log(error);
+      history.push(ROUTE.NOT_FOUND)
+    });
     setIsSearchPerformed(true);
   }
 
   const postRecipe = async (formData) => {
 
     console.log("--------------FRONT------------------");
-    setShowSpinner(true)
     for (const entry of formData.entries()) {
       console.log(entry);
     }
+    
+    setShowSpinner(true)
 
     try {
       const {data} = await axios.post('http://localhost:3001/recipes', formData)
@@ -59,7 +73,8 @@ function App() {
         <Route exact path={ROUTE.LANDING} render={ () => <Landing /> } />
 
         <Route path={ROUTE.HOME} render={ () => <Home 
-        isSearchPerformed={isSearchPerformed} /> } />
+        isSearchPerformed={isSearchPerformed} 
+        showSpinner={showSpinner}/> } />
 
         <Route path={ROUTE.CREATE} render={ () => <Form 
         postRecipe={postRecipe}
