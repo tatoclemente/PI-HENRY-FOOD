@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import Glass from '../../images/searching.png';
 
 import style from "./SearchBar.module.css";
-import { clearReacipeFiltered, setCurrentPage } from '../../redux/action-creators/actions';
+import { clearReacipeFiltered, setCurrentDiets, setCurrentPage } from '../../redux/action-creators/actions';
 
 function SearchBar({ onSearch }) {
 
@@ -50,6 +50,7 @@ function SearchBar({ onSearch }) {
       handleFilterChange()
       onSearch(query)
       dispatch(clearReacipeFiltered())
+      dispatch(setCurrentDiets([]))
   }
 
   const handleSearchClick = (nameOption) => {
@@ -58,7 +59,8 @@ function SearchBar({ onSearch }) {
       setNameOptions([])
       handleFilterChange()
       onSearch(nameOption)
-     
+      dispatch(clearReacipeFiltered())
+      dispatch(setCurrentDiets([]))
     }
   }
 

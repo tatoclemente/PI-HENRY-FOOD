@@ -41,7 +41,7 @@ export const getRecipesByName = (name) => {
   return async (dispatch) => {
     const response = await axios.get(`/recipes?name=${name}`);
     const recipesByName = response.data;
-
+    
     if (
       recipesByName.message === "Lo siento, no existen recetas con ese nombre"
     ) {

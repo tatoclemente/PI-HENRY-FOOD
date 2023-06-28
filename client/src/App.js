@@ -54,7 +54,7 @@ function App() {
       // history.push(ROUTE.HOME)
     } catch (error) {
       window.alert("Error al enviar el formulario")
-      throw Error({error: error.message})
+      console.log(error.message);
     } finally {
       setShowSpinner(false)
     }
