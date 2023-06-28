@@ -22,8 +22,8 @@ function DetailInfo({recipe}) {
       <h1 className={style.name}>{recipe.name}</h1>
       <p className={style.summary}>
         <span dangerouslySetInnerHTML={{ __html: recipe.summary.replace(
-          /<a\b([^>]*)>/gi,
-          '<a $1 target="_blank">'
+          /<a\b([^>]*)>/gi,        //La expresion regular encuentra las etiquetas a y captura lo qu ehay adentro y lo guarda
+          '<a $1 target="_blank">' // en este string le agrego la captura con 1$ y el target="_blank" para que redireccione
         ), }} />
       </p>
       <div className={style.imageContainer}>

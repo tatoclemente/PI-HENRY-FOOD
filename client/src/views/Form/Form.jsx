@@ -161,6 +161,18 @@ function Form({ postRecipe, showSpinner }) {
     setErrors((prevErrors) => ({ ...prevErrors, image: imageErrors.image }));
   };
 
+   // IMAGE DRAG AND DROP HANDLERS
+  const handleDragOver = (event) => {
+  event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const { files } = event.dataTransfer;
+    handleImageChange({ target: { files } });
+  };
+
+
   const handleDeleteClick = () => {
     setFilename("No selected image");
     setImageFile(null);
@@ -346,7 +358,11 @@ function Form({ postRecipe, showSpinner }) {
       </section>
 
       {/* ------------------ IMAGEN -----------------*/}
-      <div className={style.uploaderContainer} onClick={handleClick}>
+      <div 
+      className={style.uploaderContainer} 
+      onClick={handleClick}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop} >
         <label></label>
         <input
           id="upload-input"

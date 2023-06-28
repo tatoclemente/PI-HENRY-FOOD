@@ -6,6 +6,7 @@ import {
   filterByOrigin,
   orderByName,
   orderByScore,
+  setCurrentDiets,
   setCurrentPage,
 } from "../../redux/action-creators/actions";
 import style from "./FilteredOptions.module.css";
@@ -14,6 +15,7 @@ import { scrollToTop } from "../../Functions/functions";
 function FilteredOptions({ title }) {
   const diets = useSelector((state) => state.diets);
   const filteredRecipes = useSelector(state => state.filteredRecipes)
+  const selectedDietsFilter = useSelector(state=>state.selectedDiets)
   const dispatch = useDispatch();
 
   const [filterOptions, setFilterOptions] = useState({
@@ -23,18 +25,19 @@ function FilteredOptions({ title }) {
     selectedOrderByHealth: ""
   });
 
-  const [selectedDietsFilter, setSelectedDietsFilter] = useState([]);
+  // const [selectedDietsFilter, setSelectedDietsFilter] = useState([]);
 
   useEffect(() => {
     const dietsArr = filteredRecipes.map((recipe) => recipe.diets).flat();
     const uniqueDiets = [...new Set(dietsArr)];
 
-    if(filterOptions.selectedDiet && !selectedDietsFilter.includes(filterOptions.selectedDiet) && uniqueDiets.includes(filterOptions.selectedDiet)) {
-      setSelectedDietsFilter((prevSelectedDiets) => (
-        [...prevSelectedDiets, filterOptions.selectedDiet]
-      ))
+    if(!selectedDietsFilter.includes(filterOptions.selectedDiet) && uniqueDiets.includes(filterOptions.selectedDiet)) {
+      // setSelectedDietsFilter((prevSelectedDiets) => (
+      //   [...prevSelectedDiets, filterOptions.selectedDiet]
+      // ))
+      dispatch(setCurrentDiets(filterOptions.selectedDiet))
     }
-  }, [filteredRecipes, filterOptions.selectedDiet])
+  }, [dispatch, selectedDietsFilter, filteredRecipes, filterOptions.selectedDiet])
 
   const handleFilterByDiet = (event) => {
     const {value} = event.target
@@ -68,7 +71,7 @@ function FilteredOptions({ title }) {
       selectedOrderByName: "",
       selectedOrderByHealth: ""
     })
-    setSelectedDietsFilter([])
+    dispatch(setCurrentDiets([]))
     handleFilterChange()
     setTimeout(scrollToTop, 100);// Llamo a scrollToTop después de 100 milisegundos
   };                             // para esperar que el estado se actualice correctamente

@@ -19,3 +19,5 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ADD_NEW_RECIPE = "ADD_NEW_RECIPE";
 
 export const CURRENT_PAGE = "CURRENT_PAGE";
+
+export const CURRENT_DIETS = "CURRENT_DIETS"

@@ -10,6 +10,7 @@ import {
   CLEAR_RECIPE_FILTERED,
   ADD_NEW_RECIPE,
   CURRENT_PAGE,
+  CURRENT_DIETS,
 } from "./action-creators/types";
 
 // import { recipes, dietTypes } from "../utils/data";
@@ -20,10 +21,9 @@ const initialState = {
   // diets: dietTypes,
   diets: [],
   recipesByName: [],
-
   filteredRecipes: [],
   currentPage: 0,
-
+  selectedDiets: [],
 };
 
 
@@ -70,6 +70,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
       )
 
       return { ...state, filteredRecipes: filterByDiet };
+    
+    case CURRENT_DIETS:
+      if(payload.length === 0) 
+        return {...state, selectedDiets: []} 
+      return {
+        ...state,
+        selectedDiets:[...state.selectedDiets, payload]
+      }
 
     case FILTER_BY_ORIGIN:
       // const recipesToFilterOrigin = state.recipesByName.length > 0

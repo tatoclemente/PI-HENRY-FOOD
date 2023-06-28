@@ -11,6 +11,7 @@ import {
   FILTER_BY_ORIGIN,
   ADD_NEW_RECIPE,
   CURRENT_PAGE,
+  CURRENT_DIETS,
 } from "./types";
 
 export const getAllRecipes = () => {
@@ -110,5 +111,12 @@ export const setCurrentPage = (pageNumber) => {
   return {
     type: CURRENT_PAGE,
     payload:pageNumber
+  }
+}
+
+export const setCurrentDiets = (diet) => {
+  return {
+    type: CURRENT_DIETS,
+    payload: diet
   }
 }
