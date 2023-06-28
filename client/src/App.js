@@ -49,11 +49,11 @@ function App() {
     try {
       const {data} = await axios.post('http://localhost:3001/recipes', formData)
       if (data.name)
-      window.alert("Felicitaciones, has creado una receta con exito")
+      window.alert("Congratulations, you have successfully created a recipe.")
       dispatch(addNewRecipe(data))
       // history.push(ROUTE.HOME)
     } catch (error) {
-      window.alert("Error al enviar el formulario")
+      window.alert("Error submitting the form")
       console.log(error.message);
     } finally {
       setShowSpinner(false)
