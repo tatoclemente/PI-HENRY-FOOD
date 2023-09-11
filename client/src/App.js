@@ -17,6 +17,7 @@ function App() {
   const [showSpinner, setShowSpinner] = useState(false);
 
   const history = useHistory()
+  
   const onSearch = (name) => {
     if (!name) {
       window.alert("Ups, lo siento, debe ingresar un nombre de receta")
